@@ -1,5 +1,6 @@
 from Arc import Arc
 from Graph import Graph
+import random
 
 def read_totals(input_file):
     line = input_file.readline()
@@ -32,11 +33,12 @@ def create_base_graph(input_file, total_vertexes):
 
 
 def main():
-    with open('./test_cases/100-990-25-3-1', 'r') as input_file:
+    random.seed(1)
+    with open('./test_cases/complete_graph', 'r') as input_file:
         [total_vertexes, total_edges, total_labels] = read_totals(input_file)
 
         base_graph = create_base_graph(input_file, total_vertexes)
-        print(base_graph)
+        print(base_graph.is_spanning_tree())
 
 if __name__ == '__main__':
     main()
