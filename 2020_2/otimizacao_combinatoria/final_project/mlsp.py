@@ -32,13 +32,40 @@ def create_base_graph(input_file, total_vertexes):
     return graph
 
 
+def create_initial_population(base_graph, total_vertexes, population_size):
+    population = []
+    i = 0
+    while i < population_size:
+        elem = Graph(create_empty_matrix(total_vertexes))
+        base_graph.copy_arcs_to(elem)
+
+        while not elem.is_spanning_tree():
+            cycle = elem.locate_cycle()
+            to_be_removed = random.randint(0, len(cycle)-1)
+
+            vertex1 = cycle[to_be_removed % len(cycle)]
+            vertex2 = cycle[(to_be_removed+1) % len(cycle)]
+            colours = elem.get(vertex1, vertex2)
+
+            elem.remove_arc(vertex1, vertex2, colours[random.randint(0, len(colours)-1)])
+        
+        i += 1
+        population.append(elem)
+    
+    for pop in population:
+        print(pop)
+        print()
+
+
+
 def main():
     random.seed(1)
     with open('./test_cases/complete_graph', 'r') as input_file:
         [total_vertexes, total_edges, total_labels] = read_totals(input_file)
 
         base_graph = create_base_graph(input_file, total_vertexes)
-        print(base_graph.is_spanning_tree())
+        create_initial_population(base_graph, total_vertexes, 10)
+
 
 if __name__ == '__main__':
     main()
