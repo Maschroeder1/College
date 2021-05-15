@@ -11,3 +11,9 @@ class Arc:
 
     def __str__(self):
         return str(self.colour)
+
+    def __eq__(self, o: object) -> bool:
+        return type(self) == type(o) and self.colour == o.colour
+    
+    def __hash__(self) -> int:
+        return hash(self.colour)

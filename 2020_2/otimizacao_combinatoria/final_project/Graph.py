@@ -36,8 +36,24 @@ class Graph:
             self._instance[vertex1-1][vertex2-1].remove(colour)
             if self._instance[vertex1-1][vertex2-1] == []:
                 self._instance[vertex1-1][vertex2-1] = None
+        
+        if not self.has_colour(colour):
+            self._colours.remove(colour.get_colour())
+
+
+    def has_colour(self, colour):
+        for i in range(1, self._num_vertexes+1):
+            for j in range(i+1, self._num_vertexes+1):
+                arcs = self.get(i, j)
+                if arcs is not None and colour in arcs:
+                    return True
+        return False
+
 
     def get(self, vertex1, vertex2):
+        if vertex1-1 > self._num_vertexes and vertex2-1 > self._num_vertexes:
+            return None
+        
         if vertex1 > vertex2:
             return self._instance[vertex2-1][vertex1-1]
         else:
@@ -88,7 +104,7 @@ class Graph:
                         neighbour.add_arc(i+1, j+1, arc.get_colour())
 
 
-    def locate_cycle(self):
+    def _locate_cycle(self):
         vertex_stack = []
 
         vertex_stack.append([random.randint(1, self._num_vertexes-1), []])
@@ -110,17 +126,47 @@ class Graph:
             vertex_stack += [[x, current_vertex[1] + [current_vertex[0]]] for x in neighbours]
 
 
-    def spanning_treefy(self):
+    def spanning_treefy(self, safelist=[]):
         while not self.is_spanning_tree():
-            cycle = self.locate_cycle()
-            to_be_removed = random.randint(0, len(cycle)-1)
+            cycle = self._locate_cycle()
+            removed = False
 
-            # treat cycle as a circular list
-            vertex1 = cycle[to_be_removed % len(cycle)]
-            vertex2 = cycle[(to_be_removed+1) % len(cycle)]
-            colours = self.get(vertex1, vertex2)
+            while not removed:
+                to_be_removed = random.randint(0, len(cycle)-1)
 
-            self.remove_arc(vertex1, vertex2, colours[random.randint(0, len(colours)-1)])
+                # treat cycle as a circular list
+                vertex1 = cycle[to_be_removed % len(cycle)]
+                vertex2 = cycle[(to_be_removed+1) % len(cycle)]
+                
+                if [vertex1, vertex2] not in safelist and [vertex2, vertex1] not in safelist:
+                    colours = self.get(vertex1, vertex2)
+
+                    self.remove_arc(vertex1, vertex2, colours[random.randint(0, len(colours)-1)])
+                    removed = True
+
+
+    def merge_parent_arcs(self):
+        common_parent_arcs = self.find_and_flatten_common_parent_arcs()
+        self.spanning_treefy(common_parent_arcs)
+
+
+    def find_and_flatten_common_parent_arcs(self):
+        common_parent_arcs = []
+        
+        # a common parent arc is [vertex1, vertex2] where there are 2 equal coloured arcs connecting the vertexes
+        for i in range(1, self._num_vertexes+1):
+            for j in range(i+1, self._num_vertexes+1):
+                arcs = self.get(i, j)
+                if _is_from_parents(arcs):
+                    common_parent_arcs.append([i, j])
+                    self.remove_arc(i, j, arcs[0])
+
+        return common_parent_arcs
+
+
+    def num_colours(self):
+        return len(self._colours)
+
 
     def __repr__(self):
         return self.__str__()
@@ -128,10 +174,10 @@ class Graph:
 
     def __str__(self):
         stringfied = ''
-        for line in self._instance:
+        for row in self._instance:
             stringfied += '['
-            for row in line:
-                stringfied += str(row) + ', '
+            for column in row:
+                stringfied += str(column) + ', '
             stringfied = stringfied[:-2] + ']\n'
         
         return stringfied
@@ -139,3 +185,6 @@ class Graph:
 
 def _has_loop(visited_vertexes, neighbours):
     return Utils.has_repeated(visited_vertexes, neighbours)
+
+def _is_from_parents(arcs):
+    return arcs != None and len(arcs) == 2 and len(set(arcs)) == 1
