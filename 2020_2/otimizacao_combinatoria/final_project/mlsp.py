@@ -1,6 +1,7 @@
 from Arc import Arc
 from Graph import Graph
 import random
+import time # REMOVER
 
 def read_totals(input_file):
     line = input_file.readline()
@@ -32,6 +33,18 @@ def create_base_graph(input_file, total_vertexes):
     return graph
 
 
+def remove_arc_from_cycle(graph):
+    cycle = graph.locate_cycle()
+    to_be_removed = random.randint(0, len(cycle)-1)
+
+    # treat cycle as a circular list
+    vertex1 = cycle[to_be_removed % len(cycle)]
+    vertex2 = cycle[(to_be_removed+1) % len(cycle)]
+    colours = graph.get(vertex1, vertex2)
+
+    graph.remove_arc(vertex1, vertex2, colours[random.randint(0, len(colours)-1)])
+
+
 def create_initial_population(base_graph, total_vertexes, population_size):
     population = []
     i = 0
@@ -39,15 +52,9 @@ def create_initial_population(base_graph, total_vertexes, population_size):
         elem = Graph(create_empty_matrix(total_vertexes))
         base_graph.copy_arcs_to(elem)
 
-        while not elem.is_spanning_tree():
-            cycle = elem.locate_cycle()
-            to_be_removed = random.randint(0, len(cycle)-1)
-
-            vertex1 = cycle[to_be_removed % len(cycle)]
-            vertex2 = cycle[(to_be_removed+1) % len(cycle)]
-            colours = elem.get(vertex1, vertex2)
-
-            elem.remove_arc(vertex1, vertex2, colours[random.randint(0, len(colours)-1)])
+        elem.spanning_treefy()
+        #while not elem.is_spanning_tree():
+        #    remove_arc_from_cycle(elem)
         
         i += 1
         population.append(elem)
@@ -56,15 +63,20 @@ def create_initial_population(base_graph, total_vertexes, population_size):
         print(pop)
         print()
 
+# crossover = copy arcs from both parents to son graph, and only break cycles if the arc is NOT on both of them (is not duplicated)
+
+# mutacao would be add N random arcs from the base graph, and break cycles WITHOUT caring if the arc is duplicated or not
 
 
 def main():
+    start = time.time()
     random.seed(1)
     with open('./test_cases/complete_graph', 'r') as input_file:
         [total_vertexes, total_edges, total_labels] = read_totals(input_file)
 
         base_graph = create_base_graph(input_file, total_vertexes)
         create_initial_population(base_graph, total_vertexes, 10)
+    print(time.time() - start)
 
 
 if __name__ == '__main__':

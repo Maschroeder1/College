@@ -110,6 +110,18 @@ class Graph:
             vertex_stack += [[x, current_vertex[1] + [current_vertex[0]]] for x in neighbours]
 
 
+    def spanning_treefy(self):
+        while not self.is_spanning_tree():
+            cycle = self.locate_cycle()
+            to_be_removed = random.randint(0, len(cycle)-1)
+
+            # treat cycle as a circular list
+            vertex1 = cycle[to_be_removed % len(cycle)]
+            vertex2 = cycle[(to_be_removed+1) % len(cycle)]
+            colours = self.get(vertex1, vertex2)
+
+            self.remove_arc(vertex1, vertex2, colours[random.randint(0, len(colours)-1)])
+
     def __repr__(self):
         return self.__str__()
 
