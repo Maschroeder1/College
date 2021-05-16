@@ -39,50 +39,68 @@ def create_initial_population(base_graph, total_vertexes, population_size):
     population = []
     i = 0
     while i < population_size:
+        start = time.time()
         elem = Graph(create_empty_matrix(total_vertexes))
         base_graph.copy_arcs_to(elem)
 
         elem.spanning_treefy()
         
         i += 1
-        print('created elem ' + str(i))
+        print('created elem ' + str(i) + ' in ' + str(time.time() - start))
         population.append(elem)
     
     return population
 
 
-def simulate_generations(population, base_graph, population_size, num_generations, total_vertexes):
-    i = 0
-    generations_since_last_top = 0
-    stuff = True
-    current_generation = population
-    elite_percentage = 0.1
-    mutate_percentage = 0.2
+def simulate_generations(population, base_graph, population_size, num_generations, total_vertexes, output_file):
+    with open('./results/' + output_file + '.txt', 'w') as f:
+        i = 0
+        current_generation = population
+        elite_percentage = 0.1
+        mutate_percentage = 0.2
 
-    total_elites = int(len(current_generation)*elite_percentage)
-    total_mutations = int(len(current_generation)*mutate_percentage)
-    total_crossovers = population_size - total_elites - total_mutations
+        total_elites = int(len(current_generation) * elite_percentage)
+        total_mutations = int(len(current_generation) * mutate_percentage)
+        total_crossovers = population_size - total_elites - total_mutations
 
-    while i < num_generations and stuff:
+        while i < num_generations:
+            start = time.time()
+            current_generation.sort(key=lambda x: x.num_colours())
+            print()
+            print('top of population ' + str(i) + ': ' + str(current_generation[0].num_colours()))
+            f.write('top of population ' + str(i) + ': ' + str(current_generation[0].num_colours()))
+
+            new_generation = []
+            new_generation += current_generation[:total_elites]
+            new_generation += mutations(current_generation, total_mutations, total_vertexes, base_graph)
+            new_generation += crossover(current_generation, total_crossovers, total_vertexes)
+
+            current_generation = new_generation
+            i += 1
+            print('time for generation: ' + str(time.time() - start))
+            print(len(current_generation))
+            f.write(' it took ' + str(time.time() - start) + ' to process it\n')
+        
         current_generation.sort(key=lambda x: x.num_colours())
-        print('top of population ' + str(i) + ': ' + str(current_generation[0].num_colours()))
-        #print('it has been ' + str(generations_since_last_top) + ' generations since last top update')
+        f.write(str(current_generation[0]))
+        print(current_generation[0].num_colours())
 
-        new_generation = []
-        new_generation += current_generation[:total_elites]
-        new_generation += current_generation[:total_mutations] # temporary until mutation function is implemented
-        new_generation += crossover(population, total_crossovers, total_vertexes)
 
-        # commenting this because python is auto-updating current_generation's number of colours, no matter what I try to do
-        #if new_generation[0].num_colours() < current_generation[0].num_colours():
-        #    generations_since_last_top = -1
-        current_generation = new_generation
-        generations_since_last_top += 1
-        i += 1
-    
-    current_generation.sort(key=lambda x: x.num_colours())
-    print(current_generation[0])
-    print(current_generation[0].num_colours())
+def mutations(population, num_mutations, total_vertexes, base_graph):
+    mutated_graphs = []
+    max_random_arcs = 5
+
+    for i in range(0, num_mutations):
+        elem = Graph(create_empty_matrix(total_vertexes))
+
+        population[random.randint(0, len(population)-1)].copy_arcs_to(elem)
+        for j in range(0, random.randint(1, max_random_arcs)):
+            base_graph.flat_copy_random_arc_to(elem)
+
+        elem.spanning_treefy()
+        mutated_graphs.append(elem)
+
+    return mutated_graphs
 
 
 def crossover(population, num_crossovers, total_vertexes):
@@ -147,23 +165,26 @@ def select_parent_population_tier(population, tier_border_indexes):
                 return population[tier_border_indexes[tier]:tier_border_indexes[tier+1]]
         i += 1
 
-# crossover = copy arcs from both parents to son graph, and only break cycles if the arc is NOT on both of them (is not duplicated)
-
-# mutacao would be add N random arcs from the base graph, and break cycles WITHOUT caring if the arc is duplicated or not
-
 
 def main():
     start = time.time()
-    population_size = 100
-    num_generations = 100
-    random.seed(1)
-    with open('./test_cases/testFile_7_75_37.col', 'r') as input_file:
+    file_name = '100-990-125-7-4'
+    seed = 1
+
+    if file_name.find('.col') != -1:
+        output_file_name = file_name[:-4] + '_seed_' + str(seed)
+    else:
+        output_file_name = file_name + '_seed_' + str(seed)
+    population_size = 20
+    num_generations = 200
+    random.seed(seed)
+    with open('./test_cases/' + file_name, 'r') as input_file:
         [total_vertexes, total_edges, total_labels] = read_totals(input_file)
 
         base_graph = create_base_graph(input_file, total_vertexes)
         population = create_initial_population(base_graph, total_vertexes, population_size)
 
-        simulate_generations(population, base_graph, population_size, num_generations, total_vertexes)
+        simulate_generations(population, base_graph, population_size, num_generations, total_vertexes, output_file_name)
     print(time.time() - start)
 
 

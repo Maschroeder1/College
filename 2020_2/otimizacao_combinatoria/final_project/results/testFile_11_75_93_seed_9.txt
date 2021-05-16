@@ -1,0 +1,275 @@
+top of population 0: 47 it took 1.2900612354278564 to process it
+top of population 1: 47 it took 1.3177239894866943 to process it
+top of population 2: 47 it took 1.2142727375030518 to process it
+top of population 3: 47 it took 1.1242902278900146 to process it
+top of population 4: 47 it took 1.2008635997772217 to process it
+top of population 5: 47 it took 1.1329455375671387 to process it
+top of population 6: 47 it took 1.0992586612701416 to process it
+top of population 7: 47 it took 1.1248595714569092 to process it
+top of population 8: 46 it took 1.0651195049285889 to process it
+top of population 9: 46 it took 0.9477458000183105 to process it
+top of population 10: 46 it took 0.9071516990661621 to process it
+top of population 11: 46 it took 0.8902232646942139 to process it
+top of population 12: 46 it took 0.9831922054290771 to process it
+top of population 13: 46 it took 0.7991886138916016 to process it
+top of population 14: 46 it took 0.8793208599090576 to process it
+top of population 15: 46 it took 0.7779910564422607 to process it
+top of population 16: 46 it took 0.8824784755706787 to process it
+top of population 17: 46 it took 0.8514137268066406 to process it
+top of population 18: 44 it took 0.7272744178771973 to process it
+top of population 19: 43 it took 0.7151069641113281 to process it
+top of population 20: 43 it took 0.6369013786315918 to process it
+top of population 21: 43 it took 0.5431172847747803 to process it
+top of population 22: 43 it took 0.6830456256866455 to process it
+top of population 23: 43 it took 0.6121799945831299 to process it
+top of population 24: 43 it took 0.6481494903564453 to process it
+top of population 25: 43 it took 0.6697347164154053 to process it
+top of population 26: 43 it took 0.6201021671295166 to process it
+top of population 27: 43 it took 0.6703534126281738 to process it
+top of population 28: 43 it took 0.6549537181854248 to process it
+top of population 29: 43 it took 0.5874817371368408 to process it
+top of population 30: 43 it took 0.6391441822052002 to process it
+top of population 31: 43 it took 0.587827205657959 to process it
+top of population 32: 42 it took 0.6077561378479004 to process it
+top of population 33: 41 it took 0.5395867824554443 to process it
+top of population 34: 41 it took 0.5803573131561279 to process it
+top of population 35: 41 it took 0.5724360942840576 to process it
+top of population 36: 41 it took 0.5071136951446533 to process it
+top of population 37: 41 it took 0.5226867198944092 to process it
+top of population 38: 41 it took 0.5509593486785889 to process it
+top of population 39: 41 it took 0.6281766891479492 to process it
+top of population 40: 41 it took 0.6358304023742676 to process it
+top of population 41: 41 it took 0.6433725357055664 to process it
+top of population 42: 41 it took 0.733104944229126 to process it
+top of population 43: 41 it took 0.6521477699279785 to process it
+top of population 44: 41 it took 0.6433844566345215 to process it
+top of population 45: 41 it took 0.6927149295806885 to process it
+top of population 46: 41 it took 0.6323683261871338 to process it
+top of population 47: 41 it took 0.7082300186157227 to process it
+top of population 48: 41 it took 0.6482675075531006 to process it
+top of population 49: 41 it took 0.6681907176971436 to process it
+top of population 50: 41 it took 0.5857064723968506 to process it
+top of population 51: 41 it took 0.5859401226043701 to process it
+top of population 52: 41 it took 0.5957980155944824 to process it
+top of population 53: 41 it took 0.6039893627166748 to process it
+top of population 54: 41 it took 0.62003493309021 to process it
+top of population 55: 41 it took 0.5331213474273682 to process it
+top of population 56: 41 it took 0.5700116157531738 to process it
+top of population 57: 40 it took 0.4995870590209961 to process it
+top of population 58: 40 it took 0.5055677890777588 to process it
+top of population 59: 40 it took 0.5775792598724365 to process it
+top of population 60: 40 it took 0.5691478252410889 to process it
+top of population 61: 40 it took 0.5721213817596436 to process it
+top of population 62: 40 it took 0.6031365394592285 to process it
+top of population 63: 40 it took 0.5936429500579834 to process it
+top of population 64: 40 it took 0.5676343441009521 to process it
+top of population 65: 40 it took 0.6300487518310547 to process it
+top of population 66: 40 it took 0.554912805557251 to process it
+top of population 67: 40 it took 0.642470121383667 to process it
+top of population 68: 40 it took 0.5191168785095215 to process it
+top of population 69: 40 it took 0.6092038154602051 to process it
+top of population 70: 40 it took 0.5643038749694824 to process it
+top of population 71: 40 it took 0.7101714611053467 to process it
+top of population 72: 40 it took 0.6086242198944092 to process it
+top of population 73: 40 it took 0.5882656574249268 to process it
+top of population 74: 40 it took 0.6202762126922607 to process it
+top of population 75: 40 it took 0.5112838745117188 to process it
+top of population 76: 40 it took 0.5691280364990234 to process it
+top of population 77: 40 it took 0.5997076034545898 to process it
+top of population 78: 40 it took 0.5869128704071045 to process it
+top of population 79: 40 it took 0.5608797073364258 to process it
+top of population 80: 40 it took 0.5214393138885498 to process it
+top of population 81: 40 it took 0.4620218276977539 to process it
+top of population 82: 40 it took 0.5211286544799805 to process it
+top of population 83: 40 it took 0.5396473407745361 to process it
+top of population 84: 40 it took 0.49311113357543945 to process it
+top of population 85: 40 it took 0.43509769439697266 to process it
+top of population 86: 40 it took 0.5111715793609619 to process it
+top of population 87: 40 it took 0.5159289836883545 to process it
+top of population 88: 40 it took 0.5355019569396973 to process it
+top of population 89: 40 it took 0.4864068031311035 to process it
+top of population 90: 39 it took 0.5725886821746826 to process it
+top of population 91: 39 it took 0.5081145763397217 to process it
+top of population 92: 39 it took 0.49510908126831055 to process it
+top of population 93: 39 it took 0.533750057220459 to process it
+top of population 94: 39 it took 0.583277702331543 to process it
+top of population 95: 39 it took 0.5613205432891846 to process it
+top of population 96: 39 it took 0.5835583209991455 to process it
+top of population 97: 39 it took 0.5813555717468262 to process it
+top of population 98: 39 it took 0.4951925277709961 to process it
+top of population 99: 39 it took 0.5658140182495117 to process it
+top of population 100: 39 it took 0.5829038619995117 to process it
+top of population 101: 38 it took 0.49729204177856445 to process it
+top of population 102: 38 it took 0.5712859630584717 to process it
+top of population 103: 38 it took 0.6081259250640869 to process it
+top of population 104: 38 it took 0.60782790184021 to process it
+top of population 105: 38 it took 0.6160142421722412 to process it
+top of population 106: 38 it took 0.5790755748748779 to process it
+top of population 107: 38 it took 0.5011110305786133 to process it
+top of population 108: 38 it took 0.5219979286193848 to process it
+top of population 109: 38 it took 0.63814377784729 to process it
+top of population 110: 38 it took 0.5540237426757812 to process it
+top of population 111: 38 it took 0.5890686511993408 to process it
+top of population 112: 38 it took 0.5421655178070068 to process it
+top of population 113: 38 it took 0.5591251850128174 to process it
+top of population 114: 38 it took 0.588667631149292 to process it
+top of population 115: 38 it took 0.5905532836914062 to process it
+top of population 116: 38 it took 0.5682337284088135 to process it
+top of population 117: 38 it took 0.49312257766723633 to process it
+top of population 118: 38 it took 0.5512042045593262 to process it
+top of population 119: 38 it took 0.5591518878936768 to process it
+top of population 120: 38 it took 0.4761068820953369 to process it
+top of population 121: 38 it took 0.5091159343719482 to process it
+top of population 122: 38 it took 0.49512195587158203 to process it
+top of population 123: 38 it took 0.5375149250030518 to process it
+top of population 124: 38 it took 0.5452742576599121 to process it
+top of population 125: 38 it took 0.5221176147460938 to process it
+top of population 126: 38 it took 0.5139796733856201 to process it
+top of population 127: 38 it took 0.5675785541534424 to process it
+top of population 128: 38 it took 0.5081148147583008 to process it
+top of population 129: 38 it took 0.565138578414917 to process it
+top of population 130: 38 it took 0.5491323471069336 to process it
+top of population 131: 38 it took 0.600691556930542 to process it
+top of population 132: 38 it took 0.5201096534729004 to process it
+top of population 133: 37 it took 0.5431344509124756 to process it
+top of population 134: 37 it took 0.5731363296508789 to process it
+top of population 135: 36 it took 0.5611786842346191 to process it
+top of population 136: 36 it took 0.5408470630645752 to process it
+top of population 137: 36 it took 0.6351418495178223 to process it
+top of population 138: 36 it took 0.6489665508270264 to process it
+top of population 139: 36 it took 0.6341426372528076 to process it
+top of population 140: 36 it took 0.5161161422729492 to process it
+top of population 141: 36 it took 0.5392062664031982 to process it
+top of population 142: 36 it took 0.4923667907714844 to process it
+top of population 143: 36 it took 0.554180383682251 to process it
+top of population 144: 36 it took 0.5708603858947754 to process it
+top of population 145: 36 it took 0.5479168891906738 to process it
+top of population 146: 35 it took 0.5683755874633789 to process it
+top of population 147: 35 it took 0.5296781063079834 to process it
+top of population 148: 35 it took 0.5011143684387207 to process it
+top of population 149: 35 it took 0.4151031970977783 to process it
+top of population 150: 35 it took 0.5231199264526367 to process it
+top of population 151: 35 it took 0.5931892395019531 to process it
+top of population 152: 35 it took 0.5421218872070312 to process it
+top of population 153: 35 it took 0.6291418075561523 to process it
+top of population 154: 35 it took 0.7151610851287842 to process it
+top of population 155: 35 it took 0.5364162921905518 to process it
+top of population 156: 35 it took 0.610997200012207 to process it
+top of population 157: 35 it took 0.6168889999389648 to process it
+top of population 158: 35 it took 0.6191396713256836 to process it
+top of population 159: 35 it took 0.5550670623779297 to process it
+top of population 160: 35 it took 0.548943042755127 to process it
+top of population 161: 35 it took 0.5948216915130615 to process it
+top of population 162: 35 it took 0.5525422096252441 to process it
+top of population 163: 35 it took 0.586362361907959 to process it
+top of population 164: 35 it took 0.6181395053863525 to process it
+top of population 165: 35 it took 0.5156514644622803 to process it
+top of population 166: 35 it took 0.517103910446167 to process it
+top of population 167: 35 it took 0.511115550994873 to process it
+top of population 168: 35 it took 0.5421221256256104 to process it
+top of population 169: 35 it took 0.5781309604644775 to process it
+top of population 170: 35 it took 0.5201160907745361 to process it
+top of population 171: 35 it took 0.5301196575164795 to process it
+top of population 172: 35 it took 0.5681276321411133 to process it
+top of population 173: 35 it took 0.5561344623565674 to process it
+top of population 174: 35 it took 0.5393815040588379 to process it
+top of population 175: 35 it took 0.5218462944030762 to process it
+top of population 176: 35 it took 0.5541982650756836 to process it
+top of population 177: 35 it took 0.48111677169799805 to process it
+top of population 178: 35 it took 0.5021061897277832 to process it
+top of population 179: 35 it took 0.5181145668029785 to process it
+top of population 180: 35 it took 0.5081150531768799 to process it
+top of population 181: 35 it took 0.5031130313873291 to process it
+top of population 182: 35 it took 0.47711706161499023 to process it
+top of population 183: 35 it took 0.4623987674713135 to process it
+top of population 184: 35 it took 0.47316789627075195 to process it
+top of population 185: 35 it took 0.47110509872436523 to process it
+top of population 186: 35 it took 0.5261178016662598 to process it
+top of population 187: 35 it took 0.484119176864624 to process it
+top of population 188: 35 it took 0.452805757522583 to process it
+top of population 189: 35 it took 0.5071814060211182 to process it
+top of population 190: 35 it took 0.5071244239807129 to process it
+top of population 191: 34 it took 0.5005195140838623 to process it
+top of population 192: 34 it took 0.5572154521942139 to process it
+top of population 193: 34 it took 0.4811084270477295 to process it
+top of population 194: 34 it took 0.49758195877075195 to process it
+top of population 195: 34 it took 0.5171844959259033 to process it
+top of population 196: 34 it took 0.5121049880981445 to process it
+top of population 197: 34 it took 0.5069115161895752 to process it
+top of population 198: 34 it took 0.5191957950592041 to process it
+top of population 199: 34 it took 0.49990200996398926 to process it
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [87], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [80], None, None, None, None]
+[None, None, None, None, None, [24], [28], None, None, None, None, None, None, [32], None, None, None, None, None, None, [83], None, None, None, [60], None, None, None, [41], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, [21], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [57], None, None, None, None, None, None, None, None, None, [61], None, None, None, None, None, None, [81], None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, [8], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [71], None, None, None, None, [8], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [32], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [63], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [25], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [86], None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, [25], None, None, None, None, None, None, [83], None, None, None, None, None, None, None, None, None, None, None, None, [50], None, None, None, None, None, [75], None, [57], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [65], None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, [18], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [25], None, None, None, None, None, None, None, None, None, None, None, None, [26], None, None, None, None, None, None, None, [36], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [50], None, None, None, [13], None, None, None, None, None, None, [23], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [23], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [32], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [28], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [32], [41], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [63], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [62], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [3], None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [18], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [21], None, None, None, None, None, [26], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [64], None, None, None, None, None, None, [64], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [61], None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [7], None, None, None, None, None, None, [86], None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [57], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [75], None, None, None, None, None, None, None, [62], None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [65], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [60], None, None, None, None, None, None, None, None, None, [7], None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [81], None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [86], None, None, None, None, None, None, [40], None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [2], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [80], None, None, None, [26], None, None, None, None, None, None, None, None, [60]]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [7], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [36], None, None, None, None, None, None, None, None, None, None, None, None, None, None, [50], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [63], None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [5], None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [28], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [40], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [2], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [76], None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [25], None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [76], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [85], None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, [60], None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]

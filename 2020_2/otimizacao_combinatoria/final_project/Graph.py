@@ -37,6 +37,7 @@ class Graph:
             if self._instance[vertex1-1][vertex2-1] == []:
                 self._instance[vertex1-1][vertex2-1] = None
         
+        self._num_arcs -= 1
         if not self.has_colour(colour):
             self._colours.remove(colour.get_colour())
 
@@ -102,6 +103,29 @@ class Graph:
                 if self_arc != None:
                     for arc in self_arc:
                         neighbour.add_arc(i+1, j+1, arc.get_colour())
+
+
+    def flat_copy_random_arc_to(self, other):
+        vertex1 = random.randint(1, self._num_vertexes)
+        neighbours = self._neighbours(vertex1)
+        vertex2 = neighbours[random.randint(0, len(neighbours)-1)]
+
+        arcs = self.get(vertex1, vertex2)
+        random_arc = arcs[random.randint(0, len(arcs)-1)]
+        
+        other.add_arc(vertex1, vertex2, random_arc.get_colour())
+        other.flatten(vertex1, vertex2)
+
+
+    def flatten(self, vertex1, vertex2):
+        already_found_arcs = []
+        arcs = self.get(vertex2, vertex1)
+
+        for arc in arcs:
+            if (arc in already_found_arcs):
+                self.remove_arc(vertex1, vertex2, arc)
+            else:
+                already_found_arcs.append(arc)
 
 
     def _locate_cycle(self):
