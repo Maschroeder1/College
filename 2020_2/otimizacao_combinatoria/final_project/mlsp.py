@@ -2,6 +2,7 @@ from Arc import Arc
 from Graph import Graph
 import random
 import time # REMOVER
+import sys
 
 def read_totals(input_file):
     line = input_file.readline()
@@ -166,17 +167,15 @@ def select_parent_population_tier(population, tier_border_indexes):
         i += 1
 
 
-def main():
+def main(seed=1, file_name='100-990-125-7-4', population_size=20, num_generations=200):
+    print([seed, file_name, population_size, num_generations])
     start = time.time()
-    file_name = '100-990-125-7-4'
-    seed = 1
 
     if file_name.find('.col') != -1:
-        output_file_name = file_name[:-4] + '_seed_' + str(seed)
+        output_file_name = file_name[:-4] + '_big_seed_' + str(seed)
     else:
-        output_file_name = file_name + '_seed_' + str(seed)
-    population_size = 20
-    num_generations = 200
+        output_file_name = file_name + '_big_seed_' + str(seed)
+
     random.seed(seed)
     with open('./test_cases/' + file_name, 'r') as input_file:
         [total_vertexes, total_edges, total_labels] = read_totals(input_file)
@@ -189,4 +188,11 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    args = sys.argv[1:]
+    if len(args) > 0:
+        if len(args) == 1:
+            main(seed=args[0])
+        else:
+            main(seed=int(args[0]), file_name=args[1], population_size=int(args[2]), num_generations=int(args[3]))
+    else:
+        main()
