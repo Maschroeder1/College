@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
     }
 
     printf("%d\n", lineNumber);
-    printf("Main done\n");
+    printf("Teste github\n");
 
     exit(0);
 }
