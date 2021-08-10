@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mikael/git/college/2021_1/compilers/main.c
+stdio.h
+-
+tokens.h
+/home/mikael/git/college/2021_1/compilers/tokens.h
+
+/home/mikael/git/college/2021_1/compilers/tokens.h
+

@@ -1,0 +1,3 @@
+/home/mikael/git/college/2021_1/compilers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mikael/git/college/2021_1/compilers/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mikael/git/college/2021_1/compilers/cmake-build-debug/CMakeFiles/compilers.dir
