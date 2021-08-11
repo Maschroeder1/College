@@ -1965,6 +1965,14 @@ void yyfree (void * ptr )
 #include "hash.c"
 #include "main.c"
 
+int isRunning(void) {
+    return running;
+}
+
+int getLineNumber(void) {
+    return lineNumber;
+}
+
 void initMe(void) {
     running = 1;
     lineNumber = 1;
