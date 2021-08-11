@@ -1,5 +1,6 @@
 %{
     #include "tokens.h"
+    #include "hash.h"
     int running = 1;
     int lineNumber = 1;
 %}
@@ -26,7 +27,7 @@ return                              { return KW_RETURN; }
 "!="                                { return OPERATOR_DIF; }
 ".."                                { return OPERATOR_RANGE; }
 
-[a-zA-Z]+[ a-zA-Z0-9]*[a-zA-Z0-9]   { return TK_IDENTIFIER; }
+[a-zA-Z]+[ a-zA-Z0-9]*[a-zA-Z0-9]   { hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER; }
 
 '[0-9]+'                            { return LIT_INTEGER; }
 '[a-zA-Z]'                          { return LIT_CHAR; }
@@ -45,6 +46,7 @@ return                              { return KW_RETURN; }
 
 %%
 
+#include "hash.c"
 #include "main.c"
 
 int yywrap() {

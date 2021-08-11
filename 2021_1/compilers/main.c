@@ -11,6 +11,7 @@ int main(int argc, char **argv) {
 
     yyin = fopen(argv[1], "r");
 
+    hashInit();
     while(running) {
         tok = yylex();
 
@@ -48,5 +49,6 @@ int main(int argc, char **argv) {
     printf("%d\n", lineNumber);
     printf("Teste github\n");
 
+    hashPrint();
     exit(0);
 }
