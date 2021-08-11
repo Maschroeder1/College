@@ -8,3 +8,21 @@ int
 /#
 ## int idk 123
 123
+>=
+==
+<= !=
+..
+ababa123ababab
+a ba123a
+a baba a
+a baba
+1ab1
+ab1 a
+ abc
+abc
+'123'
+"string ##\nvalida"
+"string \" valida!"
+-;:()[]{}+,*/><|&~=
+`
+ç

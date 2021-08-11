@@ -8,24 +8,36 @@
 
 %%
 
-char            { return KW_CHAR; }
-int             { return KW_INT; }
-float           { return KW_FLOAT; }
-data            { return KW_DATA; }
-if              { return KW_IF; }
-else            { return KW_ELSE; }
-until           { return KW_UNTIL; }
-comefrom        { return KW_COMEFROM; }
-read            { return KW_READ; }
-print           { return KW_PRINT; }
-return          { return KW_RETURN; }
-[0-9]+          { return LIT_INTEGER; }
-[-;{}+:]        { return 3; }
+char                                { return KW_CHAR; }
+int                                 { return KW_INT; }
+float                               { return KW_FLOAT; }
+data                                { return KW_DATA; }
+if                                  { return KW_IF; }
+else                                { return KW_ELSE; }
+until                               { return KW_UNTIL; }
+comefrom                            { return KW_COMEFROM; }
+read                                { return KW_READ; }
+print                               { return KW_PRINT; }
+return                              { return KW_RETURN; }
+
+">="                                { return OPERATOR_GE; }
+"<="                                { return OPERATOR_LE; }
+"=="                                { return OPERATOR_EQ; }
+"!="                                { return OPERATOR_DIF; }
+".."                                { return OPERATOR_RANGE; }
+
+[a-zA-Z]+[ a-zA-Z0-9]*[a-zA-Z0-9]   { return TK_IDENTIFIER; }
+
+'[0-9]+'                            { return LIT_INTEGER; }
+'[a-zA-Z]'                          { return LIT_CHAR; }
+\".*\"                              { return LIT_STRING; }
+
+[-,;:{}()\[\]+*/<>|&~=]             { return yytext[0]; }
+"\n"                                { ++lineNumber; }
+"#/"                                { BEGIN(COMMENT); }
 [ \t]
-"\n"            { ++lineNumber; }
 "##".*
-"#/"            { BEGIN(COMMENT); }
-.
+.                                   { return TOKEN_ERROR; }
 
 <COMMENT>"\n"   { ++lineNumber; }
 <COMMENT>"/#"   { BEGIN(INITIAL); }
@@ -72,7 +84,7 @@ int main(int argc, char **argv) {
             case LIT_CHAR: printf("Encontrei LIT_CHAR na linha %d\n", lineNumber); break;
             case LIT_STRING: printf("Encontrei LIT_STRING na linha %d\n", lineNumber); break;
             case TOKEN_ERROR: printf("Encontrei TOKEN_ERROR na linha %d\n", lineNumber); break;
-            default: printf("unexpected token %d\n", tok); break;
+            default: printf("Encontrei %c na linha %d\n", tok, lineNumber); break;
         }
 
     }
