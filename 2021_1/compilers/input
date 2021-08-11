@@ -1,3 +1,4 @@
+int
 int idk
 float read
 comefrom
@@ -26,3 +27,4 @@ abc
 -;:()[]{}+,*/><|&~=
 `
 ç
+int i = '1';
