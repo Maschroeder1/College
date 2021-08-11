@@ -49,6 +49,11 @@ return                              { return KW_RETURN; }
 #include "hash.c"
 #include "main.c"
 
+void initMe(void) {
+    running = 1;
+    lineNumber = 1;
+}
+
 int yywrap() {
     running = 0;
     return 1;

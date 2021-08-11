@@ -4,6 +4,8 @@
 int main(int argc, char **argv) {
     int tok;
 
+    initMe();
+
     if (argc < 2) {
         fprintf(stderr, "Unspecified file name\n");
         exit(1);
