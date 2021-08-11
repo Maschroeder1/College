@@ -13,7 +13,6 @@ int main(int argc, char **argv) {
 
     yyin = fopen(argv[1], "r");
 
-    hashInit();
     while(running) {
         tok = yylex();
 

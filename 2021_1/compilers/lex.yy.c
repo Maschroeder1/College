@@ -519,8 +519,8 @@ char *yytext;
 #line 2 "scanner.l"
     #include "tokens.h"
     #include "hash.h"
-    int running;
-    int lineNumber;
+    int running = 1;
+    int lineNumber = 1;
 #line 525 "lex.yy.c"
 
 #line 527 "lex.yy.c"
@@ -1968,6 +1968,7 @@ void yyfree (void * ptr )
 void initMe(void) {
     running = 1;
     lineNumber = 1;
+    hashInit();
 }
 
 int yywrap() {

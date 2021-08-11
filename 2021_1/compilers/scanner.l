@@ -52,6 +52,7 @@ return                              { return KW_RETURN; }
 void initMe(void) {
     running = 1;
     lineNumber = 1;
+    hashInit();
 }
 
 int yywrap() {
