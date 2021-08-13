@@ -21,6 +21,7 @@ a bb
 ab1 a
  abc
 abc
+abc 
 '123'
 "string ##\nvalida"
 "string \" valida!"
@@ -32,4 +33,6 @@ abc
 int i = '1';
 a
 ## a a
-a
+a 
+a a
+a 
