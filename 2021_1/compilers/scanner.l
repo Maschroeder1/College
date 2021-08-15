@@ -30,8 +30,8 @@ return                              { return KW_RETURN; }
 [a-zA-Z]+[ a-zA-Z0-9]*[a-zA-Z0-9]+  { hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER; }
 [a-zA-Z]+[a-zA-Z0-9]*               { hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER; }
 
-'[0-9]+'                            { return LIT_INTEGER; }
-'[a-zA-Z]'                          { return LIT_CHAR; }
+'.'                                 { return LIT_CHAR; }
+[0-9]+                              { return LIT_INTEGER; }
 \".*\"                              { return LIT_STRING; }
 
 [-,;:{}()\[\]+*/<>|&~=]             { return yytext[0]; }
