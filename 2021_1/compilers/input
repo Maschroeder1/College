@@ -46,3 +46,7 @@ a
 '0'
  'A'
  ' '
+
+"string \" 1\n" string 2 "string 3"
+"string in
+valida"
