@@ -33,7 +33,7 @@ return                              { return KW_RETURN; }
 '.'                                 { return LIT_CHAR; }
 [0-9]+                              { return LIT_INTEGER; }
 (?# match em abre aspas, sequencia de chars \" OU qualquer coisa que não seja " ou nova linha, parcialmente inspirado)
-\"(\\\"|[^"\n])*\"                  { printf("%s", yytext); return LIT_STRING; }
+\"(\\\"|[^"\n])*\"                  { return LIT_STRING; }
 
 [-,;:{}()\[\]+*/<>|&~=]             { return yytext[0]; }
 "\n"                                { ++lineNumber; }
