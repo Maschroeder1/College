@@ -1,5 +1,5 @@
 %{
-    #include "tokens.h"
+    #include "y.tab.h"
     #include "hash.h"
     int running = 1;
     int lineNumber = 1;
@@ -48,6 +48,7 @@ return                              { return KW_RETURN; }
 
 %%
 
+#include "y.tab.c"
 #include "hash.c"
 #include "main.c"
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "tokens.h"
+#include "y.tab.h"
 
 // partes da main do sor que estavam faltando e fazendo o clion gritar
 int yylex();
@@ -20,18 +20,10 @@ int main(int argc, char **argv) {
     initMe();
     yyin = fopen(argv[1], "r");
 
-    while(isRunning()) {
-        int tok = yylex();
-
-        if (!isRunning()) {
-            break;
-        }
-
-        printToken(tok);
-    }
-
-    printf("%d\n", getLineNumber());
+    yyparse();
+    
     hashPrint();
+    
     exit(0);
 }
 
