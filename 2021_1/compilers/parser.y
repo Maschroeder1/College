@@ -30,29 +30,59 @@
 programa: decl
     ;
 
-decl: KW_DATA '{' data_section
+decl: data_section_declaration expression
     ;
 
-data_section: data_section_variable ';' data_section
-    |
-    '}'
-    ;
+data_section_declaration: KW_DATA '{' data_section '}';
 
-data_section_variable: regular_variable_declaration
-    | vector_variable_declaration
-    ;
+data_section: data_section_variable ';' data_section ;
 
-regular_variable_declaration: variable_type_declaration ':' TK_IDENTIFIER '=' variable_literal_declaration;
+data_section_variable: regular_variable_intiation | vector_variable_declaration;
 
-vector_variable_declaration: variable_type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization;
+regular_variable_intiation: regular_variable_declaration '=' variable_literal_declaration;
+
+regular_variable_declaration: type_declaration ':' TK_IDENTIFIER;
+
+vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization;
 
 optional_vector_initialization: '=' variable_literal_declaration vector_initialization | ;
 
 vector_initialization: variable_literal_declaration vector_initialization | ;
 
-variable_type_declaration: KW_INT | KW_CHAR | KW_FLOAT;
+type_declaration: KW_INT | KW_CHAR | KW_FLOAT;
 
 variable_literal_declaration: LIT_INTEGER | LIT_CHAR;
+
+functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list ')' '{' command_block '}';
+
+parameter_list: regular_variable_declaration parameter_list | ;
+
+command_block: command ';' command_block | ;
+
+command: attribuition | ;
+
+attribuition: ;
+
+expression: expression_leaf_adjacent | expression_branch | KW_READ;
+
+expression_leaf_adjacent: expression_leaf binary_operator expression 
+    | expression binary_operator expression_leaf 
+    | expression_leaf binary_operator expression_leaf
+    | unary_operator expression_leaf | expression_leaf;
+
+expression_leaf: TK_IDENTIFIER | TK_IDENTIFIER '[' expression ']' | LIT_INTEGER | LIT_CHAR;
+
+binary_operator: arithmetic_operator | logical_operator | unknown_operator;
+
+arithmetic_operator: '+' | '-' | '*' | '/';
+
+logical_operator: OPERATOR_GE | OPERATOR_LE | OPERATOR_EQ | OPERATOR_DIF;
+
+unknown_operator: '|' | '>' | '<' | '&';
+
+unary_operator: '~';
+
+expression_branch: expression binary_operator expression | unary_operator expression | '(' expression ')';
 
 %%
 
