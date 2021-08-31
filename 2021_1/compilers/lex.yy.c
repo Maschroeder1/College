@@ -517,7 +517,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "scanner.l"
 #line 2 "scanner.l"
-    #include "tokens.h"
+    #include "y.tab.h"
     #include "hash.h"
     int running = 1;
     int lineNumber = 1;
@@ -905,7 +905,7 @@ YY_RULE_SETUP
 case 21:
 YY_RULE_SETUP
 #line 36 "scanner.l"
-{ printf("%s", yytext); return LIT_STRING; }
+{ return LIT_STRING; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
@@ -1968,6 +1968,7 @@ void yyfree (void * ptr )
 #line 49 "scanner.l"
 
 
+#include "y.tab.c"
 #include "hash.c"
 #include "main.c"
 

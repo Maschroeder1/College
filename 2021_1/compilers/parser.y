@@ -30,35 +30,29 @@
 programa: decl
     ;
 
-decl: dec resto
+decl: KW_DATA '{' data_section
+    ;
+
+data_section: data_section_variable ';' data_section
     |
+    '}'
     ;
 
-resto: ',' dec resto
-    |
+data_section_variable: regular_variable_declaration
+    | vector_variable_declaration
     ;
 
-dec: KW_INT TK_IDENTIFIER
-    | KW_INT TK_IDENTIFIER '(' ')' body
-    ;
+regular_variable_declaration: variable_type_declaration ':' TK_IDENTIFIER '=' variable_literal_declaration;
 
-body: '{' lcmd '}'
-    ;
+vector_variable_declaration: variable_type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization;
 
-lcmd: cmd lcmd
-    |
-    ;
+optional_vector_initialization: '=' variable_literal_declaration vector_initialization | ;
 
-cmd: TK_IDENTIFIER '=' expr
-    ;
+vector_initialization: variable_literal_declaration vector_initialization | ;
 
-expr: LIT_INTEGER
-    | TK_IDENTIFIER
-    | expr '+' expr
-    | expr '-' expr
-    | expr OPERATOR_EQ expr
-    | '(' expr ')'
-    ;
+variable_type_declaration: KW_INT | KW_CHAR | KW_FLOAT;
+
+variable_literal_declaration: LIT_INTEGER | LIT_CHAR;
 
 %%
 

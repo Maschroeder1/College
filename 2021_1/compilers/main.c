@@ -23,6 +23,7 @@ int main(int argc, char **argv) {
     yyparse();
     
     hashPrint();
+    printf("ok\n");
     
     exit(0);
 }
