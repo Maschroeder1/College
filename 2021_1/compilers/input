@@ -7,5 +7,20 @@ float[1..3]: vet1;
 int[999..123]: vet2 = 3 1 'a' 'b';
 char[5..5]: vet3 = 1;
 }
-
-a + 5 + (5 + ~('a' + var[123] < 'd')) == read != multiple(a + b + 5, 'b') + empty() + single(1) - aninhada(aninhada(), 1 + 1)
+int: funLegal(int: i) {
+q = a + 5 + (5 + ~('a' + var[123] < 'd')) == read != multiple(a + b + 5, 'b') + empty() + single(1) - aninhada(aninhada(), 1 + 1);
+##return char: anotherFun() {
+abc = 'a';
+print "a string", a+1;
+##};
+;;;;;;;;
+}
+char: anotherFun(){}
+float: thirdFun(int: asb a, char: sad) {
+return (1 + 11 + 123 + 'a');
+return (1 + 11 + 123 + 'a');
+return (1 + 11 + 123 + 'a');
+return (1 + 11 + 123 + 'a');
+return (1 + 11 + 123 + 'a');
+return (1 + 11 + 123 + 'a');
+}

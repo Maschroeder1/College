@@ -27,67 +27,60 @@
 
 %%
 
-programa: decl
-    ;
-
-decl: data_section_declaration expression
+init: data_section_declaration functions_block
     ;
 
 data_section_declaration: KW_DATA '{' data_section '}';
-
 data_section: data_section_variable ';' data_section | ;
-
 data_section_variable: regular_variable_intiation | vector_variable_declaration;
 
 regular_variable_intiation: regular_variable_declaration '=' variable_literal_declaration;
 
 regular_variable_declaration: type_declaration ':' TK_IDENTIFIER;
-
 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization;
-
 optional_vector_initialization: '=' variable_literal_declaration vector_initialization | ;
-
 vector_initialization: variable_literal_declaration vector_initialization | ;
 
 type_declaration: KW_INT | KW_CHAR | KW_FLOAT;
-
 variable_literal_declaration: LIT_INTEGER | LIT_CHAR;
 
-functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list ')' '{' command_block '}';
 
-parameter_list: regular_variable_declaration parameter_list | ;
+
+functions_block: functions_declarations functions_block | ;
+functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list_or_empty ')' '{' command_block '}';
+parameter_list_or_empty: parameter_list | ;
+parameter_list: regular_variable_declaration ',' parameter_list | regular_variable_declaration;
 
 command_block: command ';' command_block | ;
+command: command_attribuition | command_print | return_command |;
 
-command: attribuition | ;
+command_attribuition: TK_IDENTIFIER '=' expression | TK_IDENTIFIER '[' expression ']';
 
-attribuition: ;
+command_print: KW_PRINT print_elements_or_empty;
+print_elements_or_empty: print_elements | ;
+print_elements: print_element ',' print_elements | print_element;
+print_element: LIT_STRING | expression;
+
+return_command: KW_RETURN expression;
+
+
 
 expression: expression_leaf_adjacent | expression_branch | KW_READ | expression_function;
-
 expression_leaf_adjacent: expression_leaf binary_operator expression 
     | expression binary_operator expression_leaf 
     | expression_leaf binary_operator expression_leaf
     | unary_operator expression_leaf | expression_leaf;
-
 expression_leaf: TK_IDENTIFIER | TK_IDENTIFIER '[' expression ']' | LIT_INTEGER | LIT_CHAR;
 
-binary_operator: arithmetic_operator | logical_operator | unknown_operator;
-
+binary_operator: arithmetic_operator | logical_operator | unsure_right_now_operator;
 arithmetic_operator: '+' | '-' | '*' | '/';
-
 logical_operator: OPERATOR_GE | OPERATOR_LE | OPERATOR_EQ | OPERATOR_DIF;
-
-unknown_operator: '|' | '>' | '<' | '&';
-
+unsure_right_now_operator: '|' | '>' | '<' | '&';
 unary_operator: '~';
 
 expression_branch: expression binary_operator expression | unary_operator expression | '(' expression ')';
-
 expression_function: TK_IDENTIFIER '(' expession_function_with_or_without_arguments ')';
-
 expession_function_with_or_without_arguments: expression_function_arguments | ;
-
 expression_function_arguments: expression ',' expression_function_arguments | expression;
 
 %%
