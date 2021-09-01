@@ -8,4 +8,4 @@ int[999..123]: vet2 = 3 1 'a' 'b';
 char[5..5]: vet3 = 1;
 }
 
-a + 5
+a + 5 + (5 + ~('a' + var[123] < 'd')) == read != multiple(a + b + 5, 'b') + empty() + single(1) - aninhada(aninhada(), 1 + 1)

@@ -35,7 +35,7 @@ decl: data_section_declaration expression
 
 data_section_declaration: KW_DATA '{' data_section '}';
 
-data_section: data_section_variable ';' data_section ;
+data_section: data_section_variable ';' data_section | ;
 
 data_section_variable: regular_variable_intiation | vector_variable_declaration;
 
@@ -63,7 +63,7 @@ command: attribuition | ;
 
 attribuition: ;
 
-expression: expression_leaf_adjacent | expression_branch | KW_READ;
+expression: expression_leaf_adjacent | expression_branch | KW_READ | expression_function;
 
 expression_leaf_adjacent: expression_leaf binary_operator expression 
     | expression binary_operator expression_leaf 
@@ -83,6 +83,12 @@ unknown_operator: '|' | '>' | '<' | '&';
 unary_operator: '~';
 
 expression_branch: expression binary_operator expression | unary_operator expression | '(' expression ')';
+
+expression_function: TK_IDENTIFIER '(' expession_function_with_or_without_arguments ')';
+
+expession_function_with_or_without_arguments: expression_function_arguments | ;
+
+expression_function_arguments: expression ',' expression_function_arguments | expression;
 
 %%
 
