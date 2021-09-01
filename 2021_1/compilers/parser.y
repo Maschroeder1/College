@@ -27,8 +27,7 @@
 
 %%
 
-init: data_section_declaration functions_block
-    ;
+init: data_section_declaration functions_block;
 
 data_section_declaration: KW_DATA '{' data_section '}';
 data_section: data_section_variable ';' data_section | ;
@@ -52,7 +51,7 @@ parameter_list_or_empty: parameter_list | ;
 parameter_list: regular_variable_declaration ',' parameter_list | regular_variable_declaration;
 
 command_block: command ';' command_block | ;
-command: command_attribuition | command_print | return_command |;
+command: command_attribuition | command_print | return_command | flow_control |;
 
 command_attribuition: TK_IDENTIFIER '=' expression | TK_IDENTIFIER '[' expression ']';
 
@@ -62,6 +61,8 @@ print_elements: print_element ',' print_elements | print_element;
 print_element: LIT_STRING | expression;
 
 return_command: KW_RETURN expression;
+
+label: TK_IDENTIFIER;
 
 
 
@@ -82,6 +83,13 @@ expression_branch: expression binary_operator expression | unary_operator expres
 expression_function: TK_IDENTIFIER '(' expession_function_with_or_without_arguments ')';
 expession_function_with_or_without_arguments: expression_function_arguments | ;
 expression_function_arguments: expression ',' expression_function_arguments | expression;
+
+
+flow_control: if_block | until_block | come_from;
+if_block: KW_IF '(' expression ')' command optional_else;
+optional_else: KW_ELSE command | ;
+until_block: KW_UNTIL '(' expression ')' command;
+come_from: KW_COMEFROM ':' label;
 
 %%
 
