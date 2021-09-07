@@ -1,0 +1,1847 @@
+Terminals unused in grammar
+
+    TOKEN_ERROR
+
+
+State 109 conflicts: 12 shift/reduce
+State 123 conflicts: 12 shift/reduce
+State 127 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: init $end
+
+    1 init: data_section_declaration functions_block
+
+    2 data_section_declaration: KW_DATA '{' data_section '}'
+
+    3 data_section: data_section_variable ';' data_section
+    4             | %empty
+
+    5 data_section_variable: regular_variable_intiation
+    6                      | vector_variable_declaration
+
+    7 regular_variable_intiation: regular_variable_declaration '=' variable_literal_declaration
+
+    8 regular_variable_declaration: type_declaration ':' TK_IDENTIFIER
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization
+
+   10 optional_vector_initialization: '=' variable_literal_declaration vector_initialization
+   11                               | %empty
+
+   12 vector_initialization: variable_literal_declaration vector_initialization
+   13                      | %empty
+
+   14 type_declaration: KW_INT
+   15                 | KW_CHAR
+   16                 | KW_FLOAT
+
+   17 variable_literal_declaration: LIT_INTEGER
+   18                             | LIT_CHAR
+
+   19 functions_block: functions_declarations functions_block
+   20                | %empty
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list_or_empty ')' '{' command_block '}'
+
+   22 parameter_list_or_empty: parameter_list
+   23                        | %empty
+
+   24 parameter_list: regular_variable_declaration ',' parameter_list
+   25               | regular_variable_declaration
+
+   26 command_block: command ';' command_block
+   27              | %empty
+
+   28 command: command_attribuition
+   29        | command_print
+   30        | return_command
+   31        | flow_control
+   32        | '{' command_block '}'
+   33        | label
+   34        | %empty
+
+   35 command_attribuition: TK_IDENTIFIER '=' expression
+   36                     | TK_IDENTIFIER '[' expression ']' '=' expression
+
+   37 command_print: KW_PRINT print_elements_or_empty
+
+   38 print_elements_or_empty: print_elements
+   39                        | %empty
+
+   40 print_elements: print_element ',' print_elements
+   41               | print_element
+
+   42 print_element: LIT_STRING
+   43              | expression
+
+   44 return_command: KW_RETURN expression
+
+   45 label: TK_IDENTIFIER
+
+   46 expression: '(' expression ')'
+   47           | KW_READ
+   48           | expression_function
+   49           | expression binary_operator expression
+   50           | unary_operator expression
+   51           | expression_leaf
+
+   52 expression_leaf: TK_IDENTIFIER
+   53                | TK_IDENTIFIER '[' expression ']'
+   54                | LIT_INTEGER
+   55                | LIT_CHAR
+
+   56 binary_operator: '+'
+   57                | '-'
+   58                | '*'
+   59                | '/'
+   60                | OPERATOR_GE
+   61                | OPERATOR_LE
+   62                | OPERATOR_EQ
+   63                | OPERATOR_DIF
+   64                | '|'
+   65                | '>'
+   66                | '<'
+   67                | '&'
+
+   68 unary_operator: '~'
+
+   69 expression_function: TK_IDENTIFIER '(' expession_function_with_or_without_arguments ')'
+
+   70 expession_function_with_or_without_arguments: expression_function_arguments
+   71                                             | %empty
+
+   72 expression_function_arguments: expression ',' expression_function_arguments
+   73                              | expression
+
+   74 flow_control: if_block
+   75             | until_block
+   76             | come_from
+
+   77 if_block: KW_IF '(' expression ')' command optional_else
+
+   78 optional_else: KW_ELSE command
+   79              | %empty
+
+   80 until_block: KW_UNTIL '(' expression ')' command
+
+   81 come_from: KW_COMEFROM ':' label
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '&' (38) 67
+    '(' (40) 21 46 69 77 80
+    ')' (41) 21 46 69 77 80
+    '*' (42) 58
+    '+' (43) 56
+    ',' (44) 24 40 72
+    '-' (45) 57
+    '/' (47) 59
+    ':' (58) 8 9 21 81
+    ';' (59) 3 26
+    '<' (60) 66
+    '=' (61) 7 10 35 36
+    '>' (62) 65
+    '[' (91) 9 36 53
+    ']' (93) 9 36 53
+    '{' (123) 2 21 32
+    '|' (124) 64
+    '}' (125) 2 21 32
+    '~' (126) 68
+    error (256)
+    KW_CHAR (258) 15
+    KW_INT (259) 14
+    KW_FLOAT (260) 16
+    KW_DATA (261) 2
+    KW_IF (262) 77
+    KW_ELSE (263) 78
+    KW_UNTIL (264) 80
+    KW_COMEFROM (265) 81
+    KW_READ (266) 47
+    KW_PRINT (267) 37
+    KW_RETURN (268) 44
+    OPERATOR_LE (269) 61
+    OPERATOR_GE (270) 60
+    OPERATOR_EQ (271) 62
+    OPERATOR_DIF (272) 63
+    OPERATOR_RANGE (273) 9
+    TK_IDENTIFIER (274) 8 9 21 35 36 45 52 53 69
+    LIT_INTEGER (275) 9 17 54
+    LIT_CHAR (276) 18 55
+    LIT_STRING (277) 42
+    TOKEN_ERROR (278)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (43)
+        on left: 0
+    init (44)
+        on left: 1
+        on right: 0
+    data_section_declaration (45)
+        on left: 2
+        on right: 1
+    data_section (46)
+        on left: 3 4
+        on right: 2 3
+    data_section_variable (47)
+        on left: 5 6
+        on right: 3
+    regular_variable_intiation (48)
+        on left: 7
+        on right: 5
+    regular_variable_declaration (49)
+        on left: 8
+        on right: 7 24 25
+    vector_variable_declaration (50)
+        on left: 9
+        on right: 6
+    optional_vector_initialization (51)
+        on left: 10 11
+        on right: 9
+    vector_initialization (52)
+        on left: 12 13
+        on right: 10 12
+    type_declaration (53)
+        on left: 14 15 16
+        on right: 8 9 21
+    variable_literal_declaration (54)
+        on left: 17 18
+        on right: 7 10 12
+    functions_block (55)
+        on left: 19 20
+        on right: 1 19
+    functions_declarations (56)
+        on left: 21
+        on right: 19
+    parameter_list_or_empty (57)
+        on left: 22 23
+        on right: 21
+    parameter_list (58)
+        on left: 24 25
+        on right: 22 24
+    command_block (59)
+        on left: 26 27
+        on right: 21 26 32
+    command (60)
+        on left: 28 29 30 31 32 33 34
+        on right: 26 77 78 80
+    command_attribuition (61)
+        on left: 35 36
+        on right: 28
+    command_print (62)
+        on left: 37
+        on right: 29
+    print_elements_or_empty (63)
+        on left: 38 39
+        on right: 37
+    print_elements (64)
+        on left: 40 41
+        on right: 38 40
+    print_element (65)
+        on left: 42 43
+        on right: 40 41
+    return_command (66)
+        on left: 44
+        on right: 30
+    label (67)
+        on left: 45
+        on right: 33 81
+    expression (68)
+        on left: 46 47 48 49 50 51
+        on right: 35 36 43 44 46 49 50 53 72 73 77 80
+    expression_leaf (69)
+        on left: 52 53 54 55
+        on right: 51
+    binary_operator (70)
+        on left: 56 57 58 59 60 61 62 63 64 65 66 67
+        on right: 49
+    unary_operator (71)
+        on left: 68
+        on right: 50
+    expression_function (72)
+        on left: 69
+        on right: 48
+    expession_function_with_or_without_arguments (73)
+        on left: 70 71
+        on right: 69
+    expression_function_arguments (74)
+        on left: 72 73
+        on right: 70 72
+    flow_control (75)
+        on left: 74 75 76
+        on right: 31
+    if_block (76)
+        on left: 77
+        on right: 74
+    optional_else (77)
+        on left: 78 79
+        on right: 77
+    until_block (78)
+        on left: 80
+        on right: 75
+    come_from (79)
+        on left: 81
+        on right: 76
+
+
+State 0
+
+    0 $accept: . init $end
+
+    KW_DATA  shift, and go to state 1
+
+    init                      go to state 2
+    data_section_declaration  go to state 3
+
+
+State 1
+
+    2 data_section_declaration: KW_DATA . '{' data_section '}'
+
+    '{'  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: init . $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    1 init: data_section_declaration . functions_block
+
+    KW_CHAR   shift, and go to state 6
+    KW_INT    shift, and go to state 7
+    KW_FLOAT  shift, and go to state 8
+
+    $default  reduce using rule 20 (functions_block)
+
+    type_declaration        go to state 9
+    functions_block         go to state 10
+    functions_declarations  go to state 11
+
+
+State 4
+
+    2 data_section_declaration: KW_DATA '{' . data_section '}'
+
+    KW_CHAR   shift, and go to state 6
+    KW_INT    shift, and go to state 7
+    KW_FLOAT  shift, and go to state 8
+
+    $default  reduce using rule 4 (data_section)
+
+    data_section                  go to state 12
+    data_section_variable         go to state 13
+    regular_variable_intiation    go to state 14
+    regular_variable_declaration  go to state 15
+    vector_variable_declaration   go to state 16
+    type_declaration              go to state 17
+
+
+State 5
+
+    0 $accept: init $end .
+
+    $default  accept
+
+
+State 6
+
+   15 type_declaration: KW_CHAR .
+
+    $default  reduce using rule 15 (type_declaration)
+
+
+State 7
+
+   14 type_declaration: KW_INT .
+
+    $default  reduce using rule 14 (type_declaration)
+
+
+State 8
+
+   16 type_declaration: KW_FLOAT .
+
+    $default  reduce using rule 16 (type_declaration)
+
+
+State 9
+
+   21 functions_declarations: type_declaration . ':' TK_IDENTIFIER '(' parameter_list_or_empty ')' '{' command_block '}'
+
+    ':'  shift, and go to state 18
+
+
+State 10
+
+    1 init: data_section_declaration functions_block .
+
+    $default  reduce using rule 1 (init)
+
+
+State 11
+
+   19 functions_block: functions_declarations . functions_block
+
+    KW_CHAR   shift, and go to state 6
+    KW_INT    shift, and go to state 7
+    KW_FLOAT  shift, and go to state 8
+
+    $default  reduce using rule 20 (functions_block)
+
+    type_declaration        go to state 9
+    functions_block         go to state 19
+    functions_declarations  go to state 11
+
+
+State 12
+
+    2 data_section_declaration: KW_DATA '{' data_section . '}'
+
+    '}'  shift, and go to state 20
+
+
+State 13
+
+    3 data_section: data_section_variable . ';' data_section
+
+    ';'  shift, and go to state 21
+
+
+State 14
+
+    5 data_section_variable: regular_variable_intiation .
+
+    $default  reduce using rule 5 (data_section_variable)
+
+
+State 15
+
+    7 regular_variable_intiation: regular_variable_declaration . '=' variable_literal_declaration
+
+    '='  shift, and go to state 22
+
+
+State 16
+
+    6 data_section_variable: vector_variable_declaration .
+
+    $default  reduce using rule 6 (data_section_variable)
+
+
+State 17
+
+    8 regular_variable_declaration: type_declaration . ':' TK_IDENTIFIER
+    9 vector_variable_declaration: type_declaration . '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization
+
+    ':'  shift, and go to state 23
+    '['  shift, and go to state 24
+
+
+State 18
+
+   21 functions_declarations: type_declaration ':' . TK_IDENTIFIER '(' parameter_list_or_empty ')' '{' command_block '}'
+
+    TK_IDENTIFIER  shift, and go to state 25
+
+
+State 19
+
+   19 functions_block: functions_declarations functions_block .
+
+    $default  reduce using rule 19 (functions_block)
+
+
+State 20
+
+    2 data_section_declaration: KW_DATA '{' data_section '}' .
+
+    $default  reduce using rule 2 (data_section_declaration)
+
+
+State 21
+
+    3 data_section: data_section_variable ';' . data_section
+
+    KW_CHAR   shift, and go to state 6
+    KW_INT    shift, and go to state 7
+    KW_FLOAT  shift, and go to state 8
+
+    $default  reduce using rule 4 (data_section)
+
+    data_section                  go to state 26
+    data_section_variable         go to state 13
+    regular_variable_intiation    go to state 14
+    regular_variable_declaration  go to state 15
+    vector_variable_declaration   go to state 16
+    type_declaration              go to state 17
+
+
+State 22
+
+    7 regular_variable_intiation: regular_variable_declaration '=' . variable_literal_declaration
+
+    LIT_INTEGER  shift, and go to state 27
+    LIT_CHAR     shift, and go to state 28
+
+    variable_literal_declaration  go to state 29
+
+
+State 23
+
+    8 regular_variable_declaration: type_declaration ':' . TK_IDENTIFIER
+
+    TK_IDENTIFIER  shift, and go to state 30
+
+
+State 24
+
+    9 vector_variable_declaration: type_declaration '[' . LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization
+
+    LIT_INTEGER  shift, and go to state 31
+
+
+State 25
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER . '(' parameter_list_or_empty ')' '{' command_block '}'
+
+    '('  shift, and go to state 32
+
+
+State 26
+
+    3 data_section: data_section_variable ';' data_section .
+
+    $default  reduce using rule 3 (data_section)
+
+
+State 27
+
+   17 variable_literal_declaration: LIT_INTEGER .
+
+    $default  reduce using rule 17 (variable_literal_declaration)
+
+
+State 28
+
+   18 variable_literal_declaration: LIT_CHAR .
+
+    $default  reduce using rule 18 (variable_literal_declaration)
+
+
+State 29
+
+    7 regular_variable_intiation: regular_variable_declaration '=' variable_literal_declaration .
+
+    $default  reduce using rule 7 (regular_variable_intiation)
+
+
+State 30
+
+    8 regular_variable_declaration: type_declaration ':' TK_IDENTIFIER .
+
+    $default  reduce using rule 8 (regular_variable_declaration)
+
+
+State 31
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER . OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization
+
+    OPERATOR_RANGE  shift, and go to state 33
+
+
+State 32
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER '(' . parameter_list_or_empty ')' '{' command_block '}'
+
+    KW_CHAR   shift, and go to state 6
+    KW_INT    shift, and go to state 7
+    KW_FLOAT  shift, and go to state 8
+
+    $default  reduce using rule 23 (parameter_list_or_empty)
+
+    regular_variable_declaration  go to state 34
+    type_declaration              go to state 35
+    parameter_list_or_empty       go to state 36
+    parameter_list                go to state 37
+
+
+State 33
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE . LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization
+
+    LIT_INTEGER  shift, and go to state 38
+
+
+State 34
+
+   24 parameter_list: regular_variable_declaration . ',' parameter_list
+   25               | regular_variable_declaration .
+
+    ','  shift, and go to state 39
+
+    $default  reduce using rule 25 (parameter_list)
+
+
+State 35
+
+    8 regular_variable_declaration: type_declaration . ':' TK_IDENTIFIER
+
+    ':'  shift, and go to state 23
+
+
+State 36
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list_or_empty . ')' '{' command_block '}'
+
+    ')'  shift, and go to state 40
+
+
+State 37
+
+   22 parameter_list_or_empty: parameter_list .
+
+    $default  reduce using rule 22 (parameter_list_or_empty)
+
+
+State 38
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER . ']' ':' TK_IDENTIFIER optional_vector_initialization
+
+    ']'  shift, and go to state 41
+
+
+State 39
+
+   24 parameter_list: regular_variable_declaration ',' . parameter_list
+
+    KW_CHAR   shift, and go to state 6
+    KW_INT    shift, and go to state 7
+    KW_FLOAT  shift, and go to state 8
+
+    regular_variable_declaration  go to state 34
+    type_declaration              go to state 35
+    parameter_list                go to state 42
+
+
+State 40
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list_or_empty ')' . '{' command_block '}'
+
+    '{'  shift, and go to state 43
+
+
+State 41
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' . ':' TK_IDENTIFIER optional_vector_initialization
+
+    ':'  shift, and go to state 44
+
+
+State 42
+
+   24 parameter_list: regular_variable_declaration ',' parameter_list .
+
+    $default  reduce using rule 24 (parameter_list)
+
+
+State 43
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list_or_empty ')' '{' . command_block '}'
+
+    KW_IF          shift, and go to state 45
+    KW_UNTIL       shift, and go to state 46
+    KW_COMEFROM    shift, and go to state 47
+    KW_PRINT       shift, and go to state 48
+    KW_RETURN      shift, and go to state 49
+    TK_IDENTIFIER  shift, and go to state 50
+    '{'            shift, and go to state 51
+
+    ';'       reduce using rule 34 (command)
+    $default  reduce using rule 27 (command_block)
+
+    command_block         go to state 52
+    command               go to state 53
+    command_attribuition  go to state 54
+    command_print         go to state 55
+    return_command        go to state 56
+    label                 go to state 57
+    flow_control          go to state 58
+    if_block              go to state 59
+    until_block           go to state 60
+    come_from             go to state 61
+
+
+State 44
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' . TK_IDENTIFIER optional_vector_initialization
+
+    TK_IDENTIFIER  shift, and go to state 62
+
+
+State 45
+
+   77 if_block: KW_IF . '(' expression ')' command optional_else
+
+    '('  shift, and go to state 63
+
+
+State 46
+
+   80 until_block: KW_UNTIL . '(' expression ')' command
+
+    '('  shift, and go to state 64
+
+
+State 47
+
+   81 come_from: KW_COMEFROM . ':' label
+
+    ':'  shift, and go to state 65
+
+
+State 48
+
+   37 command_print: KW_PRINT . print_elements_or_empty
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    LIT_STRING     shift, and go to state 70
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    $default  reduce using rule 39 (print_elements_or_empty)
+
+    print_elements_or_empty  go to state 73
+    print_elements           go to state 74
+    print_element            go to state 75
+    expression               go to state 76
+    expression_leaf          go to state 77
+    unary_operator           go to state 78
+    expression_function      go to state 79
+
+
+State 49
+
+   44 return_command: KW_RETURN . expression
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 80
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 50
+
+   35 command_attribuition: TK_IDENTIFIER . '=' expression
+   36                     | TK_IDENTIFIER . '[' expression ']' '=' expression
+   45 label: TK_IDENTIFIER .
+
+    '='  shift, and go to state 81
+    '['  shift, and go to state 82
+
+    $default  reduce using rule 45 (label)
+
+
+State 51
+
+   32 command: '{' . command_block '}'
+
+    KW_IF          shift, and go to state 45
+    KW_UNTIL       shift, and go to state 46
+    KW_COMEFROM    shift, and go to state 47
+    KW_PRINT       shift, and go to state 48
+    KW_RETURN      shift, and go to state 49
+    TK_IDENTIFIER  shift, and go to state 50
+    '{'            shift, and go to state 51
+
+    ';'       reduce using rule 34 (command)
+    $default  reduce using rule 27 (command_block)
+
+    command_block         go to state 83
+    command               go to state 53
+    command_attribuition  go to state 54
+    command_print         go to state 55
+    return_command        go to state 56
+    label                 go to state 57
+    flow_control          go to state 58
+    if_block              go to state 59
+    until_block           go to state 60
+    come_from             go to state 61
+
+
+State 52
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list_or_empty ')' '{' command_block . '}'
+
+    '}'  shift, and go to state 84
+
+
+State 53
+
+   26 command_block: command . ';' command_block
+
+    ';'  shift, and go to state 85
+
+
+State 54
+
+   28 command: command_attribuition .
+
+    $default  reduce using rule 28 (command)
+
+
+State 55
+
+   29 command: command_print .
+
+    $default  reduce using rule 29 (command)
+
+
+State 56
+
+   30 command: return_command .
+
+    $default  reduce using rule 30 (command)
+
+
+State 57
+
+   33 command: label .
+
+    $default  reduce using rule 33 (command)
+
+
+State 58
+
+   31 command: flow_control .
+
+    $default  reduce using rule 31 (command)
+
+
+State 59
+
+   74 flow_control: if_block .
+
+    $default  reduce using rule 74 (flow_control)
+
+
+State 60
+
+   75 flow_control: until_block .
+
+    $default  reduce using rule 75 (flow_control)
+
+
+State 61
+
+   76 flow_control: come_from .
+
+    $default  reduce using rule 76 (flow_control)
+
+
+State 62
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER . optional_vector_initialization
+
+    '='  shift, and go to state 86
+
+    $default  reduce using rule 11 (optional_vector_initialization)
+
+    optional_vector_initialization  go to state 87
+
+
+State 63
+
+   77 if_block: KW_IF '(' . expression ')' command optional_else
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 88
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 64
+
+   80 until_block: KW_UNTIL '(' . expression ')' command
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 89
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 65
+
+   81 come_from: KW_COMEFROM ':' . label
+
+    TK_IDENTIFIER  shift, and go to state 90
+
+    label  go to state 91
+
+
+State 66
+
+   47 expression: KW_READ .
+
+    $default  reduce using rule 47 (expression)
+
+
+State 67
+
+   52 expression_leaf: TK_IDENTIFIER .
+   53                | TK_IDENTIFIER . '[' expression ']'
+   69 expression_function: TK_IDENTIFIER . '(' expession_function_with_or_without_arguments ')'
+
+    '['  shift, and go to state 92
+    '('  shift, and go to state 93
+
+    $default  reduce using rule 52 (expression_leaf)
+
+
+State 68
+
+   54 expression_leaf: LIT_INTEGER .
+
+    $default  reduce using rule 54 (expression_leaf)
+
+
+State 69
+
+   55 expression_leaf: LIT_CHAR .
+
+    $default  reduce using rule 55 (expression_leaf)
+
+
+State 70
+
+   42 print_element: LIT_STRING .
+
+    $default  reduce using rule 42 (print_element)
+
+
+State 71
+
+   68 unary_operator: '~' .
+
+    $default  reduce using rule 68 (unary_operator)
+
+
+State 72
+
+   46 expression: '(' . expression ')'
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 94
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 73
+
+   37 command_print: KW_PRINT print_elements_or_empty .
+
+    $default  reduce using rule 37 (command_print)
+
+
+State 74
+
+   38 print_elements_or_empty: print_elements .
+
+    $default  reduce using rule 38 (print_elements_or_empty)
+
+
+State 75
+
+   40 print_elements: print_element . ',' print_elements
+   41               | print_element .
+
+    ','  shift, and go to state 95
+
+    $default  reduce using rule 41 (print_elements)
+
+
+State 76
+
+   43 print_element: expression .
+   49 expression: expression . binary_operator expression
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    $default  reduce using rule 43 (print_element)
+
+    binary_operator  go to state 108
+
+
+State 77
+
+   51 expression: expression_leaf .
+
+    $default  reduce using rule 51 (expression)
+
+
+State 78
+
+   50 expression: unary_operator . expression
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 109
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 79
+
+   48 expression: expression_function .
+
+    $default  reduce using rule 48 (expression)
+
+
+State 80
+
+   44 return_command: KW_RETURN expression .
+   49 expression: expression . binary_operator expression
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    $default  reduce using rule 44 (return_command)
+
+    binary_operator  go to state 108
+
+
+State 81
+
+   35 command_attribuition: TK_IDENTIFIER '=' . expression
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 110
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 82
+
+   36 command_attribuition: TK_IDENTIFIER '[' . expression ']' '=' expression
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 111
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 83
+
+   32 command: '{' command_block . '}'
+
+    '}'  shift, and go to state 112
+
+
+State 84
+
+   21 functions_declarations: type_declaration ':' TK_IDENTIFIER '(' parameter_list_or_empty ')' '{' command_block '}' .
+
+    $default  reduce using rule 21 (functions_declarations)
+
+
+State 85
+
+   26 command_block: command ';' . command_block
+
+    KW_IF          shift, and go to state 45
+    KW_UNTIL       shift, and go to state 46
+    KW_COMEFROM    shift, and go to state 47
+    KW_PRINT       shift, and go to state 48
+    KW_RETURN      shift, and go to state 49
+    TK_IDENTIFIER  shift, and go to state 50
+    '{'            shift, and go to state 51
+
+    ';'       reduce using rule 34 (command)
+    $default  reduce using rule 27 (command_block)
+
+    command_block         go to state 113
+    command               go to state 53
+    command_attribuition  go to state 54
+    command_print         go to state 55
+    return_command        go to state 56
+    label                 go to state 57
+    flow_control          go to state 58
+    if_block              go to state 59
+    until_block           go to state 60
+    come_from             go to state 61
+
+
+State 86
+
+   10 optional_vector_initialization: '=' . variable_literal_declaration vector_initialization
+
+    LIT_INTEGER  shift, and go to state 27
+    LIT_CHAR     shift, and go to state 28
+
+    variable_literal_declaration  go to state 114
+
+
+State 87
+
+    9 vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' TK_IDENTIFIER optional_vector_initialization .
+
+    $default  reduce using rule 9 (vector_variable_declaration)
+
+
+State 88
+
+   49 expression: expression . binary_operator expression
+   77 if_block: KW_IF '(' expression . ')' command optional_else
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    ')'           shift, and go to state 115
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    binary_operator  go to state 108
+
+
+State 89
+
+   49 expression: expression . binary_operator expression
+   80 until_block: KW_UNTIL '(' expression . ')' command
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    ')'           shift, and go to state 116
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    binary_operator  go to state 108
+
+
+State 90
+
+   45 label: TK_IDENTIFIER .
+
+    $default  reduce using rule 45 (label)
+
+
+State 91
+
+   81 come_from: KW_COMEFROM ':' label .
+
+    $default  reduce using rule 81 (come_from)
+
+
+State 92
+
+   53 expression_leaf: TK_IDENTIFIER '[' . expression ']'
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 117
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 93
+
+   69 expression_function: TK_IDENTIFIER '(' . expession_function_with_or_without_arguments ')'
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    $default  reduce using rule 71 (expession_function_with_or_without_arguments)
+
+    expression                                    go to state 118
+    expression_leaf                               go to state 77
+    unary_operator                                go to state 78
+    expression_function                           go to state 79
+    expession_function_with_or_without_arguments  go to state 119
+    expression_function_arguments                 go to state 120
+
+
+State 94
+
+   46 expression: '(' expression . ')'
+   49           | expression . binary_operator expression
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    ')'           shift, and go to state 121
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    binary_operator  go to state 108
+
+
+State 95
+
+   40 print_elements: print_element ',' . print_elements
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    LIT_STRING     shift, and go to state 70
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    print_elements       go to state 122
+    print_element        go to state 75
+    expression           go to state 76
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 96
+
+   61 binary_operator: OPERATOR_LE .
+
+    $default  reduce using rule 61 (binary_operator)
+
+
+State 97
+
+   60 binary_operator: OPERATOR_GE .
+
+    $default  reduce using rule 60 (binary_operator)
+
+
+State 98
+
+   62 binary_operator: OPERATOR_EQ .
+
+    $default  reduce using rule 62 (binary_operator)
+
+
+State 99
+
+   63 binary_operator: OPERATOR_DIF .
+
+    $default  reduce using rule 63 (binary_operator)
+
+
+State 100
+
+   56 binary_operator: '+' .
+
+    $default  reduce using rule 56 (binary_operator)
+
+
+State 101
+
+   57 binary_operator: '-' .
+
+    $default  reduce using rule 57 (binary_operator)
+
+
+State 102
+
+   58 binary_operator: '*' .
+
+    $default  reduce using rule 58 (binary_operator)
+
+
+State 103
+
+   59 binary_operator: '/' .
+
+    $default  reduce using rule 59 (binary_operator)
+
+
+State 104
+
+   64 binary_operator: '|' .
+
+    $default  reduce using rule 64 (binary_operator)
+
+
+State 105
+
+   65 binary_operator: '>' .
+
+    $default  reduce using rule 65 (binary_operator)
+
+
+State 106
+
+   66 binary_operator: '<' .
+
+    $default  reduce using rule 66 (binary_operator)
+
+
+State 107
+
+   67 binary_operator: '&' .
+
+    $default  reduce using rule 67 (binary_operator)
+
+
+State 108
+
+   49 expression: expression binary_operator . expression
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 123
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 109
+
+   49 expression: expression . binary_operator expression
+   50           | unary_operator expression .
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    OPERATOR_LE   [reduce using rule 50 (expression)]
+    OPERATOR_GE   [reduce using rule 50 (expression)]
+    OPERATOR_EQ   [reduce using rule 50 (expression)]
+    OPERATOR_DIF  [reduce using rule 50 (expression)]
+    '+'           [reduce using rule 50 (expression)]
+    '-'           [reduce using rule 50 (expression)]
+    '*'           [reduce using rule 50 (expression)]
+    '/'           [reduce using rule 50 (expression)]
+    '|'           [reduce using rule 50 (expression)]
+    '>'           [reduce using rule 50 (expression)]
+    '<'           [reduce using rule 50 (expression)]
+    '&'           [reduce using rule 50 (expression)]
+    $default      reduce using rule 50 (expression)
+
+    binary_operator  go to state 108
+
+
+State 110
+
+   35 command_attribuition: TK_IDENTIFIER '=' expression .
+   49 expression: expression . binary_operator expression
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    $default  reduce using rule 35 (command_attribuition)
+
+    binary_operator  go to state 108
+
+
+State 111
+
+   36 command_attribuition: TK_IDENTIFIER '[' expression . ']' '=' expression
+   49 expression: expression . binary_operator expression
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    ']'           shift, and go to state 124
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    binary_operator  go to state 108
+
+
+State 112
+
+   32 command: '{' command_block '}' .
+
+    $default  reduce using rule 32 (command)
+
+
+State 113
+
+   26 command_block: command ';' command_block .
+
+    $default  reduce using rule 26 (command_block)
+
+
+State 114
+
+   10 optional_vector_initialization: '=' variable_literal_declaration . vector_initialization
+
+    LIT_INTEGER  shift, and go to state 27
+    LIT_CHAR     shift, and go to state 28
+
+    $default  reduce using rule 13 (vector_initialization)
+
+    vector_initialization         go to state 125
+    variable_literal_declaration  go to state 126
+
+
+State 115
+
+   77 if_block: KW_IF '(' expression ')' . command optional_else
+
+    KW_IF          shift, and go to state 45
+    KW_UNTIL       shift, and go to state 46
+    KW_COMEFROM    shift, and go to state 47
+    KW_PRINT       shift, and go to state 48
+    KW_RETURN      shift, and go to state 49
+    TK_IDENTIFIER  shift, and go to state 50
+    '{'            shift, and go to state 51
+
+    $default  reduce using rule 34 (command)
+
+    command               go to state 127
+    command_attribuition  go to state 54
+    command_print         go to state 55
+    return_command        go to state 56
+    label                 go to state 57
+    flow_control          go to state 58
+    if_block              go to state 59
+    until_block           go to state 60
+    come_from             go to state 61
+
+
+State 116
+
+   80 until_block: KW_UNTIL '(' expression ')' . command
+
+    KW_IF          shift, and go to state 45
+    KW_UNTIL       shift, and go to state 46
+    KW_COMEFROM    shift, and go to state 47
+    KW_PRINT       shift, and go to state 48
+    KW_RETURN      shift, and go to state 49
+    TK_IDENTIFIER  shift, and go to state 50
+    '{'            shift, and go to state 51
+
+    $default  reduce using rule 34 (command)
+
+    command               go to state 128
+    command_attribuition  go to state 54
+    command_print         go to state 55
+    return_command        go to state 56
+    label                 go to state 57
+    flow_control          go to state 58
+    if_block              go to state 59
+    until_block           go to state 60
+    come_from             go to state 61
+
+
+State 117
+
+   49 expression: expression . binary_operator expression
+   53 expression_leaf: TK_IDENTIFIER '[' expression . ']'
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    ']'           shift, and go to state 129
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    binary_operator  go to state 108
+
+
+State 118
+
+   49 expression: expression . binary_operator expression
+   72 expression_function_arguments: expression . ',' expression_function_arguments
+   73                              | expression .
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    ','           shift, and go to state 130
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    $default  reduce using rule 73 (expression_function_arguments)
+
+    binary_operator  go to state 108
+
+
+State 119
+
+   69 expression_function: TK_IDENTIFIER '(' expession_function_with_or_without_arguments . ')'
+
+    ')'  shift, and go to state 131
+
+
+State 120
+
+   70 expession_function_with_or_without_arguments: expression_function_arguments .
+
+    $default  reduce using rule 70 (expession_function_with_or_without_arguments)
+
+
+State 121
+
+   46 expression: '(' expression ')' .
+
+    $default  reduce using rule 46 (expression)
+
+
+State 122
+
+   40 print_elements: print_element ',' print_elements .
+
+    $default  reduce using rule 40 (print_elements)
+
+
+State 123
+
+   49 expression: expression . binary_operator expression
+   49           | expression binary_operator expression .
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    OPERATOR_LE   [reduce using rule 49 (expression)]
+    OPERATOR_GE   [reduce using rule 49 (expression)]
+    OPERATOR_EQ   [reduce using rule 49 (expression)]
+    OPERATOR_DIF  [reduce using rule 49 (expression)]
+    '+'           [reduce using rule 49 (expression)]
+    '-'           [reduce using rule 49 (expression)]
+    '*'           [reduce using rule 49 (expression)]
+    '/'           [reduce using rule 49 (expression)]
+    '|'           [reduce using rule 49 (expression)]
+    '>'           [reduce using rule 49 (expression)]
+    '<'           [reduce using rule 49 (expression)]
+    '&'           [reduce using rule 49 (expression)]
+    $default      reduce using rule 49 (expression)
+
+    binary_operator  go to state 108
+
+
+State 124
+
+   36 command_attribuition: TK_IDENTIFIER '[' expression ']' . '=' expression
+
+    '='  shift, and go to state 132
+
+
+State 125
+
+   10 optional_vector_initialization: '=' variable_literal_declaration vector_initialization .
+
+    $default  reduce using rule 10 (optional_vector_initialization)
+
+
+State 126
+
+   12 vector_initialization: variable_literal_declaration . vector_initialization
+
+    LIT_INTEGER  shift, and go to state 27
+    LIT_CHAR     shift, and go to state 28
+
+    $default  reduce using rule 13 (vector_initialization)
+
+    vector_initialization         go to state 133
+    variable_literal_declaration  go to state 126
+
+
+State 127
+
+   77 if_block: KW_IF '(' expression ')' command . optional_else
+
+    KW_ELSE  shift, and go to state 134
+
+    KW_ELSE   [reduce using rule 79 (optional_else)]
+    $default  reduce using rule 79 (optional_else)
+
+    optional_else  go to state 135
+
+
+State 128
+
+   80 until_block: KW_UNTIL '(' expression ')' command .
+
+    $default  reduce using rule 80 (until_block)
+
+
+State 129
+
+   53 expression_leaf: TK_IDENTIFIER '[' expression ']' .
+
+    $default  reduce using rule 53 (expression_leaf)
+
+
+State 130
+
+   72 expression_function_arguments: expression ',' . expression_function_arguments
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression                     go to state 118
+    expression_leaf                go to state 77
+    unary_operator                 go to state 78
+    expression_function            go to state 79
+    expression_function_arguments  go to state 136
+
+
+State 131
+
+   69 expression_function: TK_IDENTIFIER '(' expession_function_with_or_without_arguments ')' .
+
+    $default  reduce using rule 69 (expression_function)
+
+
+State 132
+
+   36 command_attribuition: TK_IDENTIFIER '[' expression ']' '=' . expression
+
+    KW_READ        shift, and go to state 66
+    TK_IDENTIFIER  shift, and go to state 67
+    LIT_INTEGER    shift, and go to state 68
+    LIT_CHAR       shift, and go to state 69
+    '~'            shift, and go to state 71
+    '('            shift, and go to state 72
+
+    expression           go to state 137
+    expression_leaf      go to state 77
+    unary_operator       go to state 78
+    expression_function  go to state 79
+
+
+State 133
+
+   12 vector_initialization: variable_literal_declaration vector_initialization .
+
+    $default  reduce using rule 12 (vector_initialization)
+
+
+State 134
+
+   78 optional_else: KW_ELSE . command
+
+    KW_IF          shift, and go to state 45
+    KW_UNTIL       shift, and go to state 46
+    KW_COMEFROM    shift, and go to state 47
+    KW_PRINT       shift, and go to state 48
+    KW_RETURN      shift, and go to state 49
+    TK_IDENTIFIER  shift, and go to state 50
+    '{'            shift, and go to state 51
+
+    $default  reduce using rule 34 (command)
+
+    command               go to state 138
+    command_attribuition  go to state 54
+    command_print         go to state 55
+    return_command        go to state 56
+    label                 go to state 57
+    flow_control          go to state 58
+    if_block              go to state 59
+    until_block           go to state 60
+    come_from             go to state 61
+
+
+State 135
+
+   77 if_block: KW_IF '(' expression ')' command optional_else .
+
+    $default  reduce using rule 77 (if_block)
+
+
+State 136
+
+   72 expression_function_arguments: expression ',' expression_function_arguments .
+
+    $default  reduce using rule 72 (expression_function_arguments)
+
+
+State 137
+
+   36 command_attribuition: TK_IDENTIFIER '[' expression ']' '=' expression .
+   49 expression: expression . binary_operator expression
+
+    OPERATOR_LE   shift, and go to state 96
+    OPERATOR_GE   shift, and go to state 97
+    OPERATOR_EQ   shift, and go to state 98
+    OPERATOR_DIF  shift, and go to state 99
+    '+'           shift, and go to state 100
+    '-'           shift, and go to state 101
+    '*'           shift, and go to state 102
+    '/'           shift, and go to state 103
+    '|'           shift, and go to state 104
+    '>'           shift, and go to state 105
+    '<'           shift, and go to state 106
+    '&'           shift, and go to state 107
+
+    $default  reduce using rule 36 (command_attribuition)
+
+    binary_operator  go to state 108
+
+
+State 138
+
+   78 optional_else: KW_ELSE command .
+
+    $default  reduce using rule 78 (optional_else)

@@ -1,3 +1,8 @@
+%{
+    int yyerror();
+    int getLineNumber();
+%}
+
 %token KW_CHAR
 %token KW_INT
 %token KW_FLOAT
@@ -25,6 +30,11 @@
 
 %token TOKEN_ERROR
 
+%left '~'
+%left OPERATOR_LE OPERATOR_GE OPERATOR_EQ OPERATOR_DIF OPERATOR_RANGE
+%left '+' '-'
+%left '*' '/'
+
 %%
 
 init: data_section_declaration functions_block;
@@ -51,9 +61,9 @@ parameter_list_or_empty: parameter_list | ;
 parameter_list: regular_variable_declaration ',' parameter_list | regular_variable_declaration;
 
 command_block: command ';' command_block | ;
-command: command_attribuition | command_print | return_command | flow_control |;
+command: command_attribuition | command_print | return_command | flow_control | '{' command_block '}' | label |;
 
-command_attribuition: TK_IDENTIFIER '=' expression | TK_IDENTIFIER '[' expression ']';
+command_attribuition: TK_IDENTIFIER '=' expression | TK_IDENTIFIER '[' expression ']' '=' expression;
 
 command_print: KW_PRINT print_elements_or_empty;
 print_elements_or_empty: print_elements | ;
@@ -66,20 +76,17 @@ label: TK_IDENTIFIER;
 
 
 
-expression: expression_leaf_adjacent | expression_branch | KW_READ | expression_function;
-expression_leaf_adjacent: expression_leaf binary_operator expression 
-    | expression binary_operator expression_leaf 
-    | expression_leaf binary_operator expression_leaf
-    | unary_operator expression_leaf | expression_leaf;
+expression: '(' expression ')' 
+    | KW_READ 
+    | expression_function
+    | expression binary_operator expression
+    | unary_operator expression
+    | expression_leaf;
 expression_leaf: TK_IDENTIFIER | TK_IDENTIFIER '[' expression ']' | LIT_INTEGER | LIT_CHAR;
 
-binary_operator: arithmetic_operator | logical_operator | unsure_right_now_operator;
-arithmetic_operator: '+' | '-' | '*' | '/';
-logical_operator: OPERATOR_GE | OPERATOR_LE | OPERATOR_EQ | OPERATOR_DIF;
-unsure_right_now_operator: '|' | '>' | '<' | '&';
+binary_operator: '+' | '-' | '*' | '/' | OPERATOR_GE | OPERATOR_LE | OPERATOR_EQ | OPERATOR_DIF | '|' | '>' | '<' | '&';
 unary_operator: '~';
 
-expression_branch: expression binary_operator expression | unary_operator expression | '(' expression ')';
 expression_function: TK_IDENTIFIER '(' expession_function_with_or_without_arguments ')';
 expession_function_with_or_without_arguments: expression_function_arguments | ;
 expression_function_arguments: expression ',' expression_function_arguments | expression;

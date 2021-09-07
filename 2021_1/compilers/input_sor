@@ -1,0 +1,67 @@
+## UFRGS - Compiladores - Marcelo Johann - 2021/1
+
+data {
+char: c ='x';
+char: c c = 100;
+char: c  c = 'x';
+int: a = 'A';
+int: i =  1;
+int[0..9]: v = 0 0 0 0 0 0 0 0 0 0; 
+int [0..99]: mat ; 
+float: f= 0;
+}
+
+#/
+This is a comment 
+of multiple lines
+/#
+
+int: main ()
+  {
+  a = 0;
+  a = a - i;
+  a = 5;
+  v[a] = 55;
+  print (v[5]);
+  print (a);
+  i = 2;
+
+  print "Digite um numero: \n";
+  a = read;
+
+  until (i==10)
+    {
+    i = incn(i,1);
+    a = incn(a,1);
+    };
+
+  print "Incrementado algumas vezes a fica " , a ,"\n";
+
+  if (a==15) 
+    {
+    print "A=15\n";
+    marca 1;
+    };
+
+  if ( a==15 | a==17 )
+    print "A igual a 15 ou 17\n";
+
+  if (i==100) 
+    {
+    print "Nao tem como isso...\n";
+    }
+  else
+    print "OK!\n";
+  comefrom: marca 1;
+  }
+
+int: incn (int: x , int: n )
+  {
+  return (x+n);
+  }
+
+
+  
+
+
+
