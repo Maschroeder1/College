@@ -1,0 +1,168 @@
+ast(AST_CMD_BLOCK, abc0
+    ast(AST_ATTR, abc0
+        ast(AST_SYMBOL,q
+        )
+        ast(AST_ADD, abc0
+            ast(AST_LEAF_BRACKET_OPTIONAL, abc0
+                ast(AST_SYMBOL,a
+                )
+            )
+            ast(AST_ADD, abc0
+                ast(AST_SYMBOL,5
+                )
+                ast(AST_EQ, abc0
+                    ast(AST_ADD, abc0
+                        ast(AST_SYMBOL,5
+                        )
+                        ast(AST_TILDA, abc0
+                            ast(AST_ADD, abc0
+                                ast(AST_SYMBOL,'a'
+                                )
+                                ast(AST_L, abc0
+                                    ast(AST_LEAF_BRACKET_OPTIONAL, abc0
+                                        ast(AST_SYMBOL,var
+                                        )
+                                        ast(AST_BRACKET_EXPR, abc0
+                                            ast(AST_SYMBOL,123
+                                            )
+                                        )
+                                    )
+                                    ast(AST_SYMBOL,'d'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ast(AST_DIF, abc0
+                        ast(AST_READ, abc0
+                        )
+                        ast(AST_ADD, abc0
+                            ast(AST_SYMBOL,multiple
+                            )
+                            ast(AST_ADD, abc0
+                                ast(AST_SYMBOL,empty
+                                )
+                                ast(AST_SUB, abc0
+                                    ast(AST_SYMBOL,single
+                                    )
+                                    ast(AST_SYMBOL,aninhada
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    ast(AST_CMD_BLOCK, abc0
+        ast(AST_ATTR, abc0
+            ast(AST_SYMBOL,abc
+            )
+            ast(AST_SYMBOL,'a'
+            )
+        )
+        ast(AST_CMD_BLOCK, abc0
+            ast(AST_PRINT_BLOCK, abc0
+                ast(AST_SYMBOL,"a string"
+                )
+                ast(AST_ADD, abc0
+                    ast(AST_LEAF_BRACKET_OPTIONAL, abc0
+                        ast(AST_SYMBOL,a
+                        )
+                    )
+                    ast(AST_SYMBOL,1
+                    )
+                )
+            )
+            ast(AST_CMD_BLOCK, abc0
+                ast(AST_CMD_BLOCK, abc0
+                    ast(AST_CMD_BLOCK, abc0
+                        ast(AST_CMD_BLOCK, abc0
+                            ast(AST_CMD_BLOCK, abc0
+                                ast(AST_CMD_BLOCK, abc0
+                                    ast(AST_CMD_BLOCK, abc0
+                                        ast(AST_CMD_BLOCK, abc0
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+ast(AST_CMD_BLOCK, abc0
+    ast(AST_RETURN, abc0
+        ast(AST_ADD, abc0
+            ast(AST_SYMBOL,1
+            )
+            ast(AST_ADD, abc0
+                ast(AST_SYMBOL,11
+                )
+                ast(AST_ADD, abc0
+                    ast(AST_SYMBOL,123
+                    )
+                    ast(AST_SYMBOL,'a'
+                    )
+                )
+            )
+        )
+    )
+    ast(AST_CMD_BLOCK, abc0
+        ast(AST_IF, abc0
+            ast(AST_TILDA, abc0
+                ast(AST_SYMBOL,1
+                )
+            )
+            ast(AST_ATTR, abc0
+                ast(AST_SYMBOL,q
+                )
+                ast(AST_SYMBOL,1
+                )
+            )
+        )
+        ast(AST_CMD_BLOCK, abc0
+            ast(AST_ATTR, abc0
+                ast(AST_SYMBOL,b
+                )
+                ast(AST_SYMBOL,1
+                )
+            )
+            ast(AST_CMD_BLOCK, abc0
+                ast(AST_IF, abc0
+                    ast(AST_ADD, abc0
+                        ast(AST_SYMBOL,1
+                        )
+                        ast(AST_SYMBOL,1
+                        )
+                    )
+                )
+                ast(AST_CMD_BLOCK, abc0
+                    ast(AST_ATTR, abc0
+                        ast(AST_SYMBOL,else b
+                        )
+                        ast(AST_SYMBOL,1
+                        )
+                    )
+                    ast(AST_CMD_BLOCK, abc0
+                        ast(AST_UNTIL, abc0
+                            ast(AST_ADD, abc0
+                                ast(AST_SYMBOL,1
+                                )
+                                ast(AST_SYMBOL,1
+                                )
+                            )
+                            ast(AST_RETURN, abc0
+                                ast(AST_SYMBOL,'a'
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)

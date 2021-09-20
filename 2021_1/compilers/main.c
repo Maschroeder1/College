@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "hash.h"
+#include "ast.h"
 #include "y.tab.h"
 
 // partes da main do sor que estavam faltando e fazendo o clion gritar
@@ -22,7 +24,7 @@ int main(int argc, char **argv) {
 
     yyparse();
     
-    hashPrint();
+    //hashPrint();
     printf("ok\n");
     
     exit(0);

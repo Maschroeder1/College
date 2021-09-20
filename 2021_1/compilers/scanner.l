@@ -1,5 +1,6 @@
 %{
     #include "hash.h"
+    #include "ast.h"
     #include "y.tab.h"
     int running = 1;
     int lineNumber = 1;
@@ -27,13 +28,13 @@ return                              { return KW_RETURN; }
 "!="                                { return OPERATOR_DIF; }
 ".."                                { return OPERATOR_RANGE; }
 
-[a-zA-Z]+[ a-zA-Z0-9]*[a-zA-Z0-9]+  { hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER; }
-[a-zA-Z]+[a-zA-Z0-9]*               { hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER; }
+[a-zA-Z]+[ a-zA-Z0-9]*[a-zA-Z0-9]+  { yylval.symbol = hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER; }
+[a-zA-Z]+[a-zA-Z0-9]*               { yylval.symbol = hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER; }
 
-'.'                                 { return LIT_CHAR; }
-[0-9]+                              { return LIT_INTEGER; }
+'.'                                 { yylval.symbol = hashInsert(yytext, LIT_CHAR); return LIT_CHAR; }
+[0-9]+                              { yylval.symbol = hashInsert(yytext, LIT_INTEGER); return LIT_INTEGER; }
 (?# match em abre aspas, sequencia de chars \" OU qualquer coisa que não seja " ou nova linha, parcialmente inspirado)
-\"(\\\"|[^"\n])*\"                  { return LIT_STRING; }
+\"(\\\"|[^"\n])*\"                  { yylval.symbol = hashInsert(yytext, LIT_STRING); return LIT_STRING; }
 
 [-,;:{}()\[\]+*/<>|&~=]             { return yytext[0]; }
 "\n"                                { ++lineNumber; }
@@ -47,10 +48,6 @@ return                              { return KW_RETURN; }
 <COMMENT>.
 
 %%
-
-#include "y.tab.c"
-#include "hash.c"
-#include "main.c"
 
 int isRunning(void) {
     return running;
