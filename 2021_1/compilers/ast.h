@@ -34,6 +34,21 @@
 #define AST_READ 26
 #define AST_FUN 27
 #define AST_FUN_ARG 28
+#define AST_FUN_DEC 29
+#define AST_FUN_DEC_PARAM 30
+#define AST_INT 31
+#define AST_CHAR 32
+#define AST_FLOAT 33
+#define AST_FUN_BLOCK 34
+#define AST_FUN_INT 35
+#define AST_FUN_CHAR 36
+#define AST_VAR 38
+#define AST_VET_VAR 39
+#define AST_VET_RANGE 40
+#define AST_VET_INIT 41
+#define AST_DATA_SECT 42
+#define AST_INIT 43
+#define AST_FUN_FLOAT 44
 
 typedef struct astnode {
     int type;

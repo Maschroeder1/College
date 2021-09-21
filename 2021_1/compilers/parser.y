@@ -44,8 +44,12 @@
 %type<ast> expression expression_leaf command command_attribuition command_block command_print print_elements_or_empty
 %type<ast> print_elements print_element return_command flow_control if_block optional_else identifier
 %type<ast> optional_bracket_expression until_block label come_from expression_function expression_function_arguments
-%type<ast> expession_function_with_or_without_arguments
-%type<integer> binary_operator unary_operator
+%type<ast> expession_function_with_or_without_arguments init functions_block functions_declarations
+%type<ast> parameter_list_or_empty parameter_list data_section_declaration data_section data_section_variable
+%type<ast> regular_variable_intiation regular_variable_declaration vector_initialization
+%type<ast> vector_variable_declaration vector_range optional_vector_initialization variable_literal_declaration
+%type<ast> lit_char lit_int
+%type<integer> binary_operator unary_operator type_declaration function_type_declaration
 
 %left '~'
 %left OPERATOR_LE OPERATOR_GE OPERATOR_EQ OPERATOR_DIF OPERATOR_RANGE '<' '>'
@@ -54,38 +58,44 @@
 
 %%
 
-init: data_section_declaration functions_block;
+start_here: init { astPrint($1, 0); }
 
-data_section_declaration: KW_DATA '{' data_section '}';
-data_section: data_section_variable ';' data_section 
-    | ;
-data_section_variable: regular_variable_intiation 
-    | vector_variable_declaration;
+init: data_section_declaration functions_block { $$ = astCreate(AST_INIT, 0, $1, $2, 0,0); };
 
-regular_variable_intiation: regular_variable_declaration '=' variable_literal_declaration;
+data_section_declaration: KW_DATA '{' data_section '}' { $$ = astCreate(AST_DATA_SECT, 0, $3, 0,0,0); };
+data_section: data_section_variable ';' data_section { $$ = astCreate(AST_DATA_SECT, 0, $1, $3, 0,0); }
+    | { $$ = 0; };
+data_section_variable: regular_variable_intiation { $$ = $1; }
+    | vector_variable_declaration { $$ = $1; };
 
-regular_variable_declaration: type_declaration ':' identifier;
-vector_variable_declaration: type_declaration '[' LIT_INTEGER OPERATOR_RANGE LIT_INTEGER ']' ':' identifier optional_vector_initialization;
-optional_vector_initialization: '=' variable_literal_declaration vector_initialization 
-    | ;
-vector_initialization: variable_literal_declaration vector_initialization 
-    | ;
+regular_variable_intiation: regular_variable_declaration '=' variable_literal_declaration { $$ = astCreate(AST_VAR, 0, $1, $3, 0,0); };
 
-type_declaration: KW_INT 
-    | KW_CHAR 
-    | KW_FLOAT;
-variable_literal_declaration: LIT_INTEGER
-    | LIT_CHAR;
+regular_variable_declaration: type_declaration ':' identifier { $$ = astCreate($1, 0, $3, 0,0,0); };
+vector_variable_declaration: type_declaration '[' vector_range ']' ':' identifier optional_vector_initialization { $$ = astCreate($1, 0, $3, $6, $7, 0); };
+vector_range: lit_int OPERATOR_RANGE lit_int { $$ = astCreate(AST_VET_RANGE, 0, $1, $3, 0,0); };
+optional_vector_initialization: '=' variable_literal_declaration vector_initialization { $$ = astCreate(AST_VET_INIT, 0, $2, $3, 0,0); }
+    | { $$ = 0; };
+vector_initialization: variable_literal_declaration vector_initialization { $$ = astCreate(AST_VET_INIT, 0, $1, $2, 0,0); }
+    | { $$ = 0; };
+
+type_declaration: KW_INT { $$ = AST_INT; }
+    | KW_CHAR { $$ = AST_CHAR; }
+    | KW_FLOAT { $$ = AST_FLOAT; };
+variable_literal_declaration: lit_int { $$ = $1; }
+    | lit_char { $$ = $1; };
 
 
 
-functions_block: functions_declarations functions_block 
-    | ;
-functions_declarations: type_declaration ':' identifier '(' parameter_list_or_empty ')' '{' command_block '}' { astPrint($8, 0); };
-parameter_list_or_empty: parameter_list 
-    | ;
-parameter_list: regular_variable_declaration ',' parameter_list 
-    | regular_variable_declaration;
+functions_block: functions_declarations functions_block { $$ = astCreate(AST_FUN_BLOCK, 0, $1, $2, 0,0); }
+    | { $$ = 0; };
+functions_declarations: function_type_declaration ':' identifier '(' parameter_list_or_empty ')' '{' command_block '}' { $$ = astCreate($1, 0, $3, $5, $8, 0); };
+function_type_declaration: KW_INT { $$ = AST_FUN_INT; }
+    | KW_CHAR { $$ = AST_FUN_CHAR; }
+    | KW_FLOAT { $$ = AST_FUN_FLOAT; };
+parameter_list_or_empty: parameter_list { $$ = $1; }
+    | { $$ = 0; };
+parameter_list: regular_variable_declaration ',' parameter_list { $$ = astCreate(AST_FUN_DEC_PARAM, 0, $1, $3, 0,0); }
+    | regular_variable_declaration { $$ = $1; };
 
 command_block: command ';' command_block { $$ = astCreate(AST_CMD_BLOCK, 0, $1, $3, 0,0); }
     | { $$ = 0; };
@@ -121,8 +131,8 @@ expression: '(' expression ')' { $$ = $2; }
     | unary_operator expression { $$ = astCreate($1, 0, $2, 0,0,0); }
     | expression_leaf { $$ = $1; };
 expression_leaf: identifier optional_bracket_expression { $$ = astCreate(AST_LEAF_BRACKET_OPTIONAL, 0, $1, $2, 0,0); }
-    | LIT_INTEGER { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); }
-    | LIT_CHAR { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); }
+    | lit_int { $$ = $1; }
+    | lit_char { $$ = $1; }
     | KW_READ { $$ = astCreate(AST_READ, 0,0,0,0,0); };
 
 binary_operator: '+' { $$ = AST_ADD; }
@@ -156,6 +166,8 @@ until_block: KW_UNTIL '(' expression ')' command { $$ = astCreate(AST_UNTIL, 0, 
 come_from: KW_COMEFROM ':' label { $$ = astCreate(AST_COME_FROM, 0, $3, 0,0,0); };
 
 identifier: TK_IDENTIFIER { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); };
+lit_int: LIT_INTEGER { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); }
+lit_char: LIT_CHAR { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); }
 %%
 
 int yyerror() {
