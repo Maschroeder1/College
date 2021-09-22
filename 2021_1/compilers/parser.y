@@ -49,7 +49,7 @@
 %type<ast> regular_variable_intiation regular_variable_declaration vector_initialization
 %type<ast> vector_variable_declaration vector_range optional_vector_initialization variable_literal_declaration
 %type<ast> lit_char lit_int
-%type<integer> binary_operator unary_operator type_declaration function_type_declaration
+%type<integer> binary_operator unary_operator type_declaration function_type_declaration vector_type_declaration
 
 %left '~'
 %left OPERATOR_LE OPERATOR_GE OPERATOR_EQ OPERATOR_DIF OPERATOR_RANGE '<' '>'
@@ -58,11 +58,11 @@
 
 %%
 
-start_here: init { astPrint($1, 0); }
+start_here: init { globalAst = $1; }
 
 init: data_section_declaration functions_block { $$ = astCreate(AST_INIT, 0, $1, $2, 0,0); };
 
-data_section_declaration: KW_DATA '{' data_section '}' { $$ = astCreate(AST_DATA_SECT, 0, $3, 0,0,0); };
+data_section_declaration: KW_DATA '{' data_section '}' { $$ = astCreate(AST_DATA_SECT, 0, $3, $3,0,0); };
 data_section: data_section_variable ';' data_section { $$ = astCreate(AST_DATA_SECT, 0, $1, $3, 0,0); }
     | { $$ = 0; };
 data_section_variable: regular_variable_intiation { $$ = $1; }
@@ -71,16 +71,19 @@ data_section_variable: regular_variable_intiation { $$ = $1; }
 regular_variable_intiation: regular_variable_declaration '=' variable_literal_declaration { $$ = astCreate(AST_VAR, 0, $1, $3, 0,0); };
 
 regular_variable_declaration: type_declaration ':' identifier { $$ = astCreate($1, 0, $3, 0,0,0); };
-vector_variable_declaration: type_declaration '[' vector_range ']' ':' identifier optional_vector_initialization { $$ = astCreate($1, 0, $3, $6, $7, 0); };
+type_declaration: KW_INT { $$ = AST_INT; }
+    | KW_CHAR { $$ = AST_CHAR; }
+    | KW_FLOAT { $$ = AST_FLOAT; };
+vector_variable_declaration: vector_type_declaration '[' vector_range ']' ':' identifier optional_vector_initialization { $$ = astCreate($1, 0, $3, $6, $7, 0); };
+vector_type_declaration: KW_INT { $$ = AST_VET_INT; }
+    | KW_CHAR { $$ = AST_VET_CHAR; }
+    | KW_FLOAT { $$ = AST_VET_FLOAT; };
 vector_range: lit_int OPERATOR_RANGE lit_int { $$ = astCreate(AST_VET_RANGE, 0, $1, $3, 0,0); };
 optional_vector_initialization: '=' variable_literal_declaration vector_initialization { $$ = astCreate(AST_VET_INIT, 0, $2, $3, 0,0); }
     | { $$ = 0; };
 vector_initialization: variable_literal_declaration vector_initialization { $$ = astCreate(AST_VET_INIT, 0, $1, $2, 0,0); }
     | { $$ = 0; };
 
-type_declaration: KW_INT { $$ = AST_INT; }
-    | KW_CHAR { $$ = AST_CHAR; }
-    | KW_FLOAT { $$ = AST_FLOAT; };
 variable_literal_declaration: lit_int { $$ = $1; }
     | lit_char { $$ = $1; };
 
@@ -103,7 +106,7 @@ command: command_attribuition { $$ = $1; }
     | command_print { $$ = $1; }
     | return_command { $$ = $1; }
     | flow_control { $$ = $1; }
-    | '{' command_block '}' { $$ = $2; }
+    | '{' command_block '}' { $$ = astCreate(AST_CMD_CURLY, 0, $2, 0,0,0); }
     | label { $$ = $1; }
     | { $$ = 0; };
 
@@ -111,7 +114,7 @@ command_attribuition: identifier optional_bracket_expression '=' expression { $$
 optional_bracket_expression: '[' expression ']' { $$ = astCreate(AST_BRACKET_EXPR, 0, $2, 0,0,0); }
     | { $$ = 0; };
 
-command_print: KW_PRINT print_elements_or_empty { $$ = $2; };
+command_print: KW_PRINT print_elements_or_empty { $$ = astCreate(AST_PRINT, 0, $2, 0,0,0); };
 print_elements_or_empty: print_elements { $$ = $1; }
     | { $$ = 0; } ;
 print_elements: print_element ',' print_elements { $$ = astCreate(AST_PRINT_BLOCK, 0, $1, $3, 0,0); }
@@ -125,7 +128,7 @@ label: identifier { $$ = $1; };
 
 
 
-expression: '(' expression ')' { $$ = $2; }
+expression: '(' expression ')' { $$ = astCreate(AST_EXPR_PARENT, 0, $2, 0,0,0); }
     | expression_function { $$ = $1; }
     | expression binary_operator expression { $$ = astCreate($2, 0, $1, $3, 0,0); }
     | unary_operator expression { $$ = astCreate($1, 0, $2, 0,0,0); }

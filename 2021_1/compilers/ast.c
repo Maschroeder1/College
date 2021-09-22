@@ -71,7 +71,6 @@ void printType(int type) {
         case AST_READ: fprintf(stderr, "AST_READ"); break;
         case AST_FUN: fprintf(stderr, "AST_FUN"); break;
         case AST_FUN_ARG: fprintf(stderr, "AST_FUN_ARG"); break;
-        case AST_FUN_DEC: fprintf(stderr, "AST_FUN_DEC"); break;
         case AST_FUN_DEC_PARAM: fprintf(stderr, "AST_FUN_DEC_PARAM"); break;
         case AST_INT: fprintf(stderr, "AST_INT"); break;
         case AST_CHAR: fprintf(stderr, "AST_CHAR"); break;
@@ -81,11 +80,15 @@ void printType(int type) {
         case AST_FUN_CHAR: fprintf(stderr, "AST_FUN_CHAR"); break;
         case AST_FUN_FLOAT: fprintf(stderr, "AST_FUN_FLOAT"); break;
         case AST_VAR: fprintf(stderr, "AST_VAR"); break;
-        case AST_VET_VAR: fprintf(stderr, "AST_VET_VAR"); break;
         case AST_VET_RANGE: fprintf(stderr, "AST_VET_RANGE"); break;
         case AST_VET_INIT: fprintf(stderr, "AST_VET_INIT"); break;
         case AST_DATA_SECT: fprintf(stderr, "AST_DATA_SECT"); break;
         case AST_INIT: fprintf(stderr, "AST_INIT"); break;
+        case AST_VET_CHAR: fprintf(stderr, "AST_VET_CHAR"); break;
+        case AST_VET_INT: fprintf(stderr, "AST_VET_INT"); break;
+        case AST_VET_FLOAT: fprintf(stderr, "AST_VET_FLOAT"); break;
+        case AST_EXPR_PARENT: fprintf(stderr, "AST_EXPR_PARENT"); break;
+        case AST_CMD_CURLY: fprintf(stderr, "AST_CMD_CURLY"); break;
         default: fprintf(stderr, "erro erro erro erro erro erro erro erro erro erro erro erro erro erro"); break;
     }
 }

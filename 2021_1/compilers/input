@@ -11,6 +11,7 @@ int: funLegal(int: i) {
 q = a + 5 + (5 + ~('a' + var[123] < 'd')) == read != multiple(a + b + 5, 'b') + empty() + single(1) - aninhada(aninhada(), 1 + 1);
 ##return char: anotherFun() {
 abc = 'a';
+def[123] = 456 - 789;
 print "a string", a+1;
 ##};
 ;;;;;;;;
@@ -19,6 +20,8 @@ char: anotherFun(){}
 float: thirdFun(int: asb a, char: sad) {
 return (1 + 11 + 123 + 'a');
 if (~1) q = 1; b = 1;
+comefrom: marca 1;
 if(1+1) ; else b = 1;
+if(k) {a = 1; b = 2;}; else b = 1;
 until(1+1) return 'a';
 }
