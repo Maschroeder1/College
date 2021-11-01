@@ -1,3 +1,4 @@
+// trabalho de Mikael Arnez schroeder
 // tabela hash do video
 #include <string.h>
 #include <stdlib.h>

@@ -1,3 +1,4 @@
+// trabalho de Mikael Arnez schroeder
 #include <stdio.h>
 #include <stdlib.h>
 #include "hash.h"

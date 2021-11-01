@@ -1,3 +1,4 @@
+// trabalho de Mikael Arnez schroeder
 // headers tabela hash do video
 #ifndef HASH_HEADER
 #define HASH_HEADER
