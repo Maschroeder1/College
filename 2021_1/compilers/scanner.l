@@ -34,7 +34,6 @@ return                              { return KW_RETURN; }
 
 '.'                                 { yylval.symbol = hashInsert(yytext, LIT_CHAR); return LIT_CHAR; }
 [0-9]+                              { yylval.symbol = hashInsert(yytext, LIT_INTEGER); return LIT_INTEGER; }
-(?# match em abre aspas, sequencia de chars \" OU qualquer coisa que não seja " ou nova linha, parcialmente inspirado)
 \"(\\\"|[^"\n])*\"                  { yylval.symbol = hashInsert(yytext, LIT_STRING); return LIT_STRING; }
 
 [-,;:{}()\[\]+*/<>|&~=]             { return yytext[0]; }

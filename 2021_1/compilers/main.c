@@ -25,18 +25,14 @@ void simpleDecompile(AST *ast, FILE *file, char* type, char* fileMessage, int nu
 void validate(int argc);
 
 int main(int argc, char **argv) {
-    FILE *outFile;
     validate(argc);
     initMe();
     yyin = fopen(argv[1], "r");
-    outFile = fopen(argv[2], "w");
-    printf("%s\n", argv[2]);
 
     yyparse();
 
-    decompileTo(globalAst, outFile);
-    //astPrint(ast, 0);
-    //hashPrint();
+    astPrint(globalAst, 0);
+    
     printf("ok\n");
     
     exit(0);

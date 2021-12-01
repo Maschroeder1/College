@@ -3,6 +3,7 @@
     #include <stdlib.h>
     #include "hash.h"
     #include "ast.h"
+    #include "tacs.h"
     
     int yyerror();
     int getLineNumber();
@@ -58,7 +59,7 @@
 
 %%
 
-start_here: init { globalAst = $1; }
+start_here: init { globalAst = $1; TAC* temp = generateCode($1); tacPrintBackwards(temp); }
 
 init: data_section_declaration functions_block { $$ = astCreate(AST_INIT, 0, $1, $2, 0,0); };
 

@@ -1,40 +1,40 @@
 data {
-char: c = 'x';
-char: c c = 100;
-char: c  c = 'x';
-int: a = 'A';
-int: i = 1;
-int[0..9]: v = 0 0 0 0 0 0 0 0 0 0;
-int[0..99]: mat;
-float: f = 0;
+int: i = 5;
+int: abacaxi = '0';
+char: batata = 'b';
+float: j = 123;
+float[1..3]: vet1;
+int[999..123]: vet2 = 3 1 'a' 'b';
+char[5..5]: vet3 = 1;
 }
-int: main () {
-a = 0;
-a = a - i;
-a = 5;
-v[a] = 55;
-print (v[5]);
-print (a);
-i = 2;
-print "Digite um numero: \n";
-a =  read ;
-until (i == 10)
-{
-i = incn(i, 1);
-a = incn(a, 1);
-};
-print "Incrementado algumas vezes a fica ", a, "\n";
-if (a == 15) {
-print "A=15\n";
-marca 1;
-};
-if (a == 15 | a == 17) print "A igual a 15 ou 17\n";
-if (i == 100) {
-print "Nao tem como isso...\n";
-} else
-print "OK!\n";
+int: funLegal (int: i) {
+q = a + 5 + (5 + ~('a' + var[123] < 'd')) ==  read  != multiple(a + b + 5, 'b') + empty() + single(1) - aninhada(aninhada(), 1 + 1);
+abc = 'a';
+def[123] = 456 - 789;
+print "a string", a + 1;
+;
+;
+;
+;
+;
+;
+;
+;
+}
+char: anotherFun () {
+}
+float: thirdFun (int: asb a, char: sad) {
+return (1 + 11 + 123 + 'a');
+if (~1) q = 1;
+b = 1;
 comefrom: marca 1;
-}
-int: incn (int: x, int: n) {
-return (x + n);
+if (1 + 1) ;
+else b = 1;
+if (k) {
+a = 1;
+b = 2;
+};
+else b = 1;
+until (1 + 1)
+return 'a';
 }
