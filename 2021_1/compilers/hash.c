@@ -71,7 +71,7 @@ HASH_NODE *makeTemp(void) {
     static int tempSerial = 0;
     char buffer[256] = "";
 
-    sprintf(buffer, "__temp%d", tempSerial++);
+    sprintf(buffer, "__temp%d", tempSerial++); //todo: nome mais aleatorio
 
     return hashInsert(buffer, 999);
 }
@@ -80,7 +80,7 @@ HASH_NODE *makeLabel(void) {
     static int tempLabel = 0;
     char buffer[256] = "";
 
-    sprintf(buffer, "__label%d", tempLabel++);
+    sprintf(buffer, "__label%d", tempLabel++); //todo: nome mais aleatorio
 
-    return hashInsert(buffer, 999);
+    return hashInsert(buffer, 1000);
 }

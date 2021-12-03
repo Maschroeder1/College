@@ -1,9 +1,11 @@
 data {
-int: q=123;
-int: b=456;
+int: datavar=111;
+int: otherdatavar=222;
+int[1..3]: vet1;
+int[1..3]: vet2 = 'a' 'b';
 }
 int: fun() {
-avda = 123;
-b = 777;
-x = 99 + b + fun(x) + 1111;
+funvar = 333;
+funvar2 = 444 / 555;
+funvar3 = 666 + b * fun(x) - 777;
 }

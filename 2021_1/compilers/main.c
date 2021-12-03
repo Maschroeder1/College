@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
 
     yyparse();
 
-    astPrint(globalAst, 0);
+    //astPrint(globalAst, 0);
     
     printf("ok\n");
     

@@ -17,14 +17,15 @@ TAC* tacCreate(int type, HASH_NODE* res, HASH_NODE* op1, HASH_NODE* op2) {
 }
 
 void tacPrint(TAC* tac) {
-    if (!tac || tac->type == TAC_SYMBOL) return;
+    if (!tac) return;
 
     fprintf(stderr, "TAC(");
 
     switch (tac->type) {
+        case TAC_SYMBOL: fprintf(stderr, "TAC_SYMBOL"); break;
         case TAC_ADD: fprintf(stderr, "TAC_ADD"); break;
         case TAC_SUB: fprintf(stderr, "TAC_SUB"); break;
-        case TAC_COPY: fprintf(stderr, "TAC_COPY"); break;
+        case TAC_MOVE: fprintf(stderr, "TAC_MOVE"); break;
         case TAC_MUL: fprintf(stderr, "TAC_MUL"); break;
         case TAC_DIV: fprintf(stderr, "TAC_DIV"); break;
         case TAC_GE: fprintf(stderr, "TAC_GE"); break;
@@ -35,6 +36,7 @@ void tacPrint(TAC* tac) {
         case TAC_G: fprintf(stderr, "TAC_G"); break;
         case TAC_L: fprintf(stderr, "TAC_L"); break;
         case TAC_AND: fprintf(stderr, "TAC_AND"); break;
+        case TAC_VET_APPEND: fprintf(stderr, "TAC_VET_APPEND"); break;
         default: fprintf(stderr, "TAC_UNKNOWN"); break;
     }
 
@@ -59,8 +61,6 @@ TAC* tacJoin(TAC* l1, TAC* l2) {
     
     for (point = l2; point->prev != 0; point = point->prev);
     point->prev = l1;
-
-    tacPrintBackwards(l2);
     
     return l2;
 }
@@ -73,7 +73,7 @@ TAC* generateCode(AST *node) {
     if (!node)  {
         return 0;
     }
-    fprintf(stderr, "%d\n", node->type);
+
     for (i = 0; i < MAX_SONS; i++) {
         code[i] = generateCode(node->son[i]);
     }
@@ -118,14 +118,19 @@ TAC* generateCode(AST *node) {
         case AST_AND:
             result = generateBinOp(TAC_AND, code[0], code[1]);
             break;
-        case AST_ATTR:
         case AST_INT:
-        case AST_CHAR:
         case AST_FLOAT:
-            result = tacJoin(code[0], tacCreate(TAC_COPY, node->symbol, safeGet(code[0]), 0));
+        case AST_CHAR:
+        case AST_LEAF_BRACKET_OPTIONAL: // vai ter que separar por causa do optional
+            result = code[0];
+            break;
+        case AST_ATTR:
+        case AST_VAR:
+            result = tacJoin(code[1], tacCreate(TAC_MOVE, safeGet(code[0]), safeGet(code[1]), 0));
+            //result = tacJoin(code[0], tacCreate(TAC_COPY, node->son[1]->symbol, safeGet(code[0]), 0));
             break;
         default:
-            tacJoin(code[0], tacJoin(code[1], tacJoin(code[2], code[3])));
+            result = tacJoin(code[0], tacJoin(code[1], tacJoin(code[2], code[3])));
             break;
     }
     
@@ -133,8 +138,8 @@ TAC* generateCode(AST *node) {
 }
 
 TAC* generateBinOp(int type, TAC* op1, TAC* op2) {
-    fprintf(stderr, "generating %d\n", type);
-    return tacJoin(tacJoin(op1, op2), tacCreate(type, makeTemp(), safeGet(op1), safeGet(op2)));
+    TAC* temp = tacJoin(tacJoin(op1, op2), tacCreate(type, makeTemp(), safeGet(op1), safeGet(op2)));
+    return temp;
 }
 
 HASH_NODE* safeGet(TAC* something) {

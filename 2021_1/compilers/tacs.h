@@ -11,7 +11,7 @@
 #define TAC_SYMBOL 1
 #define TAC_ADD 2
 #define TAC_SUB 3
-#define TAC_COPY 4
+#define TAC_MOVE 4
 #define TAC_MUL 5
 #define TAC_DIV 6
 #define TAC_GE 7
@@ -22,6 +22,7 @@
 #define TAC_G 12
 #define TAC_L 13
 #define TAC_AND 14
+#define TAC_VET_APPEND 15
 
 typedef struct tac_node {
     int type;

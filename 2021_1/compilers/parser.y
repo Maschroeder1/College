@@ -59,7 +59,7 @@
 
 %%
 
-start_here: init { globalAst = $1; TAC* temp = generateCode($1); tacPrintBackwards(temp); }
+start_here: init { globalAst = $1; TAC* temp = generateCode($1); fprintf(stderr, "real\n"); tacPrintBackwards(temp); }
 
 init: data_section_declaration functions_block { $$ = astCreate(AST_INIT, 0, $1, $2, 0,0); };
 
