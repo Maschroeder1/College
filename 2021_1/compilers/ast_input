@@ -1,11 +1,12 @@
 data {
 int: datavar=111;
 int: otherdatavar=222;
-int[1..3]: vet1;
-int[1..3]: vet2 = 'a' 'b';
+int[123..321]: vet1;
+int[456..654]: vet2 = 'a' 'b' 'c';
 }
 int: fun() {
 funvar = 333;
 funvar2 = 444 / 555;
 funvar3 = 666 + b * fun(x) - 777;
+a = ~1;
 }

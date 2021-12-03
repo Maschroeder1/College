@@ -23,6 +23,9 @@
 #define TAC_L 13
 #define TAC_AND 14
 #define TAC_VET_APPEND 15
+#define TAC_TILDA 16
+#define TAC_BEGINFUN 17
+#define TAC_ENDFUN 18
 
 typedef struct tac_node {
     int type;
