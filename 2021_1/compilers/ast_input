@@ -5,8 +5,12 @@ int[123..321]: vet1;
 int[456..654]: vet2 = 'a' 'b' 'c';
 }
 int: fun() {
-funvar = 333;
+funvar[a] = 333;
 funvar2 = 444 / 555;
-funvar3 = 666 + b * fun(x) - 777;
-a = ~1;
+funvar3 = 666 + b[321 + 798] - c[read] * fun(x) - 777;
+a = (~1);
+}
+int: fun2() {
+fun2var = 1;
+return (1 + 11 + 123 + 'a');
 }

@@ -26,6 +26,10 @@
 #define TAC_TILDA 16
 #define TAC_BEGINFUN 17
 #define TAC_ENDFUN 18
+#define TAC_RETURN 19
+#define TAC_READ 20
+#define TAC_OPEN_BRACKET 21
+#define TAC_CLOSE_BRACKET 22
 
 typedef struct tac_node {
     int type;
@@ -43,7 +47,7 @@ void tacPrint(TAC* tac);
 void tacPrintBackwards(TAC *tac);
 
 TAC* tacJoin(TAC* l1, TAC* l2);
-HASH_NODE* safeGet(TAC* something);
+HASH_NODE* safeGetResult(TAC* something);
 
 TAC* generateCode(AST *node);
 TAC* generateBinOp(int op, TAC* op1, TAC* op2);
