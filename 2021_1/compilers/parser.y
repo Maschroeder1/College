@@ -122,7 +122,7 @@ print_element: LIT_STRING { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); }
 
 return_command: KW_RETURN expression { $$ = astCreate(AST_RETURN, 0, $2, 0,0,0); };
 
-label: identifier { $$ = $1; };
+label: identifier { $$ = astCreate(AST_LABEL, 0, $1,0,0,0); };
 
 
 
@@ -161,7 +161,7 @@ if_block: KW_IF '(' expression ')' command optional_else { $$ = astCreate(AST_IF
 optional_else: KW_ELSE command { $$ = astCreate(AST_ELSE, 0, $2, 0,0,0); }
     | { $$ = 0; };
 until_block: KW_UNTIL '(' expression ')' command { $$ = astCreate(AST_UNTIL, 0, $3, $5, 0,0); };
-come_from: KW_COMEFROM ':' label { $$ = astCreate(AST_COME_FROM, 0, $3, 0,0,0); };
+come_from: KW_COMEFROM ':' identifier { $$ = astCreate(AST_COME_FROM, 0, $3, 0,0,0); };
 
 identifier: TK_IDENTIFIER { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); };
 lit_int: LIT_INTEGER { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); }

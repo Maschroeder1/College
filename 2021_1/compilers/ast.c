@@ -91,6 +91,7 @@ void printType(int type) {
         case AST_VET_FLOAT: fprintf(stderr, "AST_VET_FLOAT"); break;
         case AST_EXPR_PARENT: fprintf(stderr, "AST_EXPR_PARENT"); break;
         case AST_CMD_CURLY: fprintf(stderr, "AST_CMD_CURLY"); break;
+        case AST_LABEL: fprintf(stderr, "AST_LABEL"); break;
         default: fprintf(stderr, "erro erro erro erro erro erro erro erro erro erro erro erro erro erro"); break;
     }
 }

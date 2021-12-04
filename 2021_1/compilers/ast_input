@@ -17,4 +17,8 @@ print;
 int: fun2() {
 fun2var = 1;
 return (1 + 11 + 123 + 'a');
+until(1+1) return 'a';
+q=1;
+comefrom: marca 1;
+marca 1;
 }

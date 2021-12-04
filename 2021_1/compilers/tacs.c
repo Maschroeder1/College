@@ -12,6 +12,7 @@ TAC* generatePrintChain(TAC* head, TAC* tail);
 TAC* generateIf(TAC* expression, TAC* command, TAC* elseCommand, AST* optionalElse);
 TAC* doGenerateIf(TAC* expression, TAC* command);
 TAC* generateIfElse(TAC* expression, TAC* command, TAC* elseCommand);
+TAC* generateUntil(TAC* expression, TAC* command);
 
 TAC* tacCreate(int type, HASH_NODE* res, HASH_NODE* op1, HASH_NODE* op2) {
     TAC* newtac;
@@ -165,6 +166,12 @@ TAC* generateCode(AST *node) {
             return generatePrintChain(code[0], code[1]);
         case AST_IF:
             return generateIf(code[0], code[1], code[2], node->son[2]);
+        case AST_UNTIL:
+            return generateUntil(code[0], code[1]);
+        case AST_COME_FROM:
+            return tacCreate(TAC_LABEL, safeGetResult(code[0]), 0,0);
+        case AST_LABEL:
+            return tacCreate(TAC_JUMP, safeGetResult(code[0]), 0, 0);
         default:
             return tacJoin(code[0], tacJoin(code[1], tacJoin(code[2], code[3])));
     }
@@ -253,6 +260,21 @@ TAC* generateIfElse(TAC* expression, TAC* command, TAC* elseCommand) {
                                            tacJoin(tacCreate(TAC_LABEL, elseLabel, 0,0),
                                                    tacJoin(elseCommand,
                                                            tacCreate(TAC_LABEL, endLabel, 0,0)))))));
+}
+
+TAC* generateUntil(TAC* expression, TAC* command) {
+    HASH_NODE *startLabel = makeLabel();
+    HASH_NODE *commandLabel = makeLabel();
+    HASH_NODE *endLabel = makeLabel();
+    
+    return tacJoin(tacCreate(TAC_LABEL, startLabel, 0,0),
+                   tacJoin(expression,
+                           tacJoin(tacCreate(TAC_IFZ, commandLabel, safeGetResult(expression), 0),
+                                   tacJoin(tacCreate(TAC_JUMP, endLabel, 0,0),
+                                           tacJoin(tacCreate(TAC_LABEL, commandLabel, 0,0),
+                                                   tacJoin(command,
+                                                           tacJoin(tacCreate(TAC_JUMP, startLabel, 0,0),
+                                                                   tacCreate(TAC_LABEL, endLabel, 0,0))))))));
 }
 
 HASH_NODE* safeGetResult(TAC* something) {
