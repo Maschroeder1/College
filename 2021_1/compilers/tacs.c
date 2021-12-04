@@ -5,9 +5,13 @@
 TAC* passThrough(TAC* code);
 TAC* generateBracketExpression(TAC* code);
 TAC* generateAttrExpression(TAC* code0, TAC* code1, TAC* code2, AST* optionalSon);
-TAC* generateFunBody(TAC* code0, TAC* code2);
-TAC* generateVector(TAC* code1, TAC* code2, AST* optionalSon);
-TAC* generateVectorInit(TAC* code0, TAC* code1, AST* optionalSon);
+TAC* generateFunBody(TAC* funName, TAC* funBody);
+TAC* generateVector(TAC* head, TAC* tail, AST* optionalSon);
+TAC* generateVectorInit(TAC* head, TAC* tail, AST* optionalSon);
+TAC* generatePrintChain(TAC* head, TAC* tail);
+TAC* generateIf(TAC* expression, TAC* command, TAC* elseCommand, AST* optionalElse);
+TAC* doGenerateIf(TAC* expression, TAC* command);
+TAC* generateIfElse(TAC* expression, TAC* command, TAC* elseCommand);
 
 TAC* tacCreate(int type, HASH_NODE* res, HASH_NODE* op1, HASH_NODE* op2) {
     TAC* newtac;
@@ -24,7 +28,8 @@ TAC* tacCreate(int type, HASH_NODE* res, HASH_NODE* op1, HASH_NODE* op2) {
 }
 
 void tacPrint(TAC* tac) {
-    if (!tac || tac->type == TAC_SYMBOL) return;
+    int printTacSymbol = 0;
+    if (!tac || (tac->type == TAC_SYMBOL && !printTacSymbol)) return;
 
     fprintf(stderr, "TAC(");
 
@@ -51,6 +56,10 @@ void tacPrint(TAC* tac) {
         case TAC_READ: fprintf(stderr, "TAC_READ"); break;
         case TAC_OPEN_BRACKET: fprintf(stderr, "TAC_OPEN_BRACKET"); break;
         case TAC_CLOSE_BRACKET: fprintf(stderr, "TAC_CLOSE_BRACKET"); break;
+        case TAC_PRINT: fprintf(stderr, "TAC_PRINT"); break;
+        case TAC_IFZ: fprintf(stderr, "TAC_IFZ"); break;
+        case TAC_JUMP: fprintf(stderr, "TAC_JUMP"); break;
+        case TAC_LABEL: fprintf(stderr, "TAC_LABEL"); break;
         default: fprintf(stderr, "TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN"); break;
     }
 
@@ -81,7 +90,6 @@ TAC* tacJoin(TAC* l1, TAC* l2) {
 
 TAC* generateCode(AST *node) {
     int i;
-    TAC* result = 0;
     TAC *code[MAX_SONS];
 
     if (!node)  {
@@ -129,6 +137,7 @@ TAC* generateCode(AST *node) {
         case AST_FLOAT:
         case AST_CHAR:
         case AST_BRACKET_EXPR:
+        case AST_ELSE:
             return passThrough(code[0]);
         case AST_ATTR:
             return generateAttrExpression(code[0], code[1], code[2], node->son[2]);
@@ -145,13 +154,17 @@ TAC* generateCode(AST *node) {
         case AST_FUN_FLOAT:
             return generateFunBody(code[0], code[2]);
         case AST_LEAF_BRACKET_OPTIONAL:
-            if (node->son[1]) {
-                return tacJoin(code[0], generateBracketExpression(code[1]));
-            } else {
-                return code[0];
-            }
+            return node->son[1] ?
+                            tacJoin(code[0], generateBracketExpression(code[1])) :
+                            passThrough(code[0]);
         case AST_CMD_BLOCK:
             return tacJoin(code[0], code[1]);
+        case AST_PRINT:
+            return node->son[0] ? passThrough(code[0]) : tacCreate(TAC_PRINT, 0, 0, 0);
+        case AST_PRINT_BLOCK:
+            return generatePrintChain(code[0], code[1]);
+        case AST_IF:
+            return generateIf(code[0], code[1], code[2], node->son[2]);
         default:
             return tacJoin(code[0], tacJoin(code[1], tacJoin(code[2], code[3])));
     }
@@ -176,37 +189,70 @@ TAC* generateBracketExpression(TAC* code) {
 TAC* generateAttrExpression(TAC* code0, TAC* code1, TAC* code2, AST* optionalSon) {
     if (optionalSon) {
         // como marcar a parte do salvar assign de vetor?
+        // nao tenho muita certeza disso, entao salvando no conteudo entre []
         return tacJoin(code1, tacCreate(TAC_MOVE, safeGetResult(code2), safeGetResult(code1), 0));
     } else {
         return tacJoin(code1, tacCreate(TAC_MOVE, safeGetResult(code0), safeGetResult(code1), 0));
     }
 }
 
-TAC* generateFunBody(TAC* code0, TAC* code2) {
+TAC* generateFunBody(TAC* funName, TAC* funBody) {
     return tacJoin(
-            tacCreate(TAC_BEGINFUN, safeGetResult(code0), 0, 0),
+            tacCreate(TAC_BEGINFUN, safeGetResult(funName), 0, 0),
             tacJoin(
-                    code2,
-                    tacCreate(TAC_ENDFUN, safeGetResult(code0), 0, 0)));
+                    funBody,
+                    tacCreate(TAC_ENDFUN, safeGetResult(funName), 0, 0)));
 }
 
-TAC* generateVector(TAC* code1, TAC* code2, AST* optionalSon) {
+TAC* generateVector(TAC* head, TAC* tail, AST* optionalSon) {
     // pensando num vetor ser tipo cons(elem1, cons(elem2, cons(elem3, null)))
     if (optionalSon) {
-        return tacJoin(code2, tacCreate(TAC_VET_APPEND, safeGetResult(code1), safeGetResult(code2), 0));
+        return tacJoin(tail, tacCreate(TAC_VET_APPEND, safeGetResult(head), safeGetResult(tail), 0));
     }
     else {
-        return tacCreate(TAC_VET_APPEND, safeGetResult(code1),0,0);
+        return tacCreate(TAC_VET_APPEND, safeGetResult(head), 0, 0);
     }
 }
 
-TAC* generateVectorInit(TAC* code0, TAC* code1, AST* optionalSon) {
+TAC* generateVectorInit(TAC* head, TAC* tail, AST* optionalSon) {
     if (optionalSon) {
-        return tacJoin(code1, tacCreate(TAC_VET_APPEND, safeGetResult(code0), safeGetResult(code1), 0));
+        return tacJoin(tail, tacCreate(TAC_VET_APPEND, safeGetResult(head), safeGetResult(tail), 0));
     }
     else {
-        return code0;
+        return head;
     }
+}
+
+TAC* generatePrintChain(TAC* head, TAC* tail) {
+    return tacJoin(tail, tacCreate(TAC_PRINT, safeGetResult(head), safeGetResult(tail), 0));
+}
+
+TAC* generateIf(TAC* expression, TAC* command, TAC* elseCommand, AST* optionalElse) {
+    return optionalElse ?
+           generateIfElse(expression, command, elseCommand) :
+           doGenerateIf(expression, command);
+}
+
+TAC* doGenerateIf(TAC* expression, TAC* command) {
+    HASH_NODE *label = makeLabel();
+    
+    return tacJoin(expression, 
+                   tacJoin(
+                           tacCreate(TAC_IFZ, label, safeGetResult(expression),0),
+                           tacJoin(command, tacCreate(TAC_LABEL, label, 0, 0))));
+}
+
+TAC* generateIfElse(TAC* expression, TAC* command, TAC* elseCommand) {
+    HASH_NODE *elseLabel = makeLabel();
+    HASH_NODE *endLabel = makeLabel();
+    
+    return tacJoin(expression,
+                   tacJoin(tacCreate(TAC_IFZ, elseLabel, safeGetResult(expression), 0),
+                           tacJoin(command,
+                                   tacJoin(tacCreate(TAC_JUMP, endLabel, 0,0),
+                                           tacJoin(tacCreate(TAC_LABEL, elseLabel, 0,0),
+                                                   tacJoin(elseCommand,
+                                                           tacCreate(TAC_LABEL, endLabel, 0,0)))))));
 }
 
 HASH_NODE* safeGetResult(TAC* something) {

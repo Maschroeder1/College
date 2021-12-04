@@ -30,6 +30,10 @@
 #define TAC_READ 20
 #define TAC_OPEN_BRACKET 21
 #define TAC_CLOSE_BRACKET 22
+#define TAC_PRINT 23
+#define TAC_IFZ 24
+#define TAC_JUMP 25
+#define TAC_LABEL 26
 
 typedef struct tac_node {
     int type;
