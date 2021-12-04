@@ -240,11 +240,11 @@ TAC* generateVectorInit(TAC* head, TAC* tail, AST* optionalSon) {
 }
 
 TAC* generatePrintChain(TAC* head, TAC* tail) {
-    return tacJoin(tail, tacCreate(TAC_PRINT, safeGetResult(head), safeGetResult(tail), 0));
+    return tacJoin(tacJoin(tail, head), tacCreate(TAC_PRINT, makeTemp(), safeGetResult(head), safeGetResult(tail)));
 }
 
 TAC* generateFunArgChain(TAC* head, TAC* tail) {
-    return tacJoin(tacJoin(tail, head), tacCreate(TAC_ARG, safeGetResult(head), safeGetResult(tail), 0));
+    return tacJoin(tacJoin(tail, head), tacCreate(TAC_ARG, makeTemp(), safeGetResult(head), safeGetResult(tail)));
 }
 
 TAC* generateIf(TAC* expression, TAC* command, TAC* elseCommand, AST* optionalElse) {
@@ -257,8 +257,7 @@ TAC* doGenerateIf(TAC* expression, TAC* command) {
     HASH_NODE *label = makeLabel();
     
     return tacJoin(expression, 
-                   tacJoin(
-                           tacCreate(TAC_IFZ, label, safeGetResult(expression),0),
+                   tacJoin(tacCreate(TAC_IFZ, label, safeGetResult(expression),0),
                            tacJoin(command, tacCreate(TAC_LABEL, label, 0, 0))));
 }
 

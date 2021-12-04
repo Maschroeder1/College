@@ -17,7 +17,7 @@ print "a string", a+1;
 ;;;;;;;;
 }
 char: anotherFun(){}
-float: thirdFun(int: asb a, char: sad) {
+float: thirdFun(int: asb a, char: sad, int: asdv, int: ultimo) {
 return (1 + 11 + 123 + 'a');
 if (~1) q = 1; b = 1;
 comefrom: marca 1;

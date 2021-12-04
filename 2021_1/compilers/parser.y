@@ -96,7 +96,7 @@ functions_declarations: KW_INT ':' identifier '(' parameter_list_or_empty ')' '{
 parameter_list_or_empty: parameter_list { $$ = $1; }
     | { $$ = 0; };
 parameter_list: regular_variable_declaration ',' parameter_list { $$ = astCreate(AST_FUN_DEC_PARAM, 0, $1, $3, 0,0); }
-    | regular_variable_declaration { $$ = $1; };
+    | regular_variable_declaration { $$ = astCreate(AST_FUN_DEC_PARAM, 0, $1, 0, 0,0); };
 
 command_block: command ';' command_block { $$ = astCreate(AST_CMD_BLOCK, 0, $1, $3, 0,0); }
     | { $$ = 0; };
@@ -116,7 +116,7 @@ command_print: KW_PRINT print_elements_or_empty { $$ = astCreate(AST_PRINT, 0, $
 print_elements_or_empty: print_elements { $$ = $1; }
     | { $$ = 0; } ;
 print_elements: print_element ',' print_elements { $$ = astCreate(AST_PRINT_BLOCK, 0, $1, $3, 0,0); }
-    | print_element { $$ = $1; };
+    | print_element { $$ = astCreate(AST_PRINT_BLOCK, 0, $1, 0, 0,0); };
 print_element: LIT_STRING { $$ = astCreate(AST_SYMBOL, $1, 0,0,0,0); }
     | expression { $$ = $1; };
 
@@ -151,7 +151,7 @@ expression_function: identifier '(' expession_function_with_or_without_arguments
 expession_function_with_or_without_arguments: expression_function_arguments { $$ = $1; }
     | { $$ = 0; };
 expression_function_arguments: expression ',' expression_function_arguments { $$ = astCreate(AST_FUN_ARG, 0, $1, $3, 0,0); }
-    | expression { $$ = $1; };
+    | expression { $$ = astCreate(AST_FUN_ARG, 0, $1, 0, 0,0); };
 
 
 flow_control: if_block { $$ = $1; }
