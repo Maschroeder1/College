@@ -5,7 +5,7 @@
 TAC* passThrough(TAC* code);
 TAC* generateBracketExpression(TAC* code);
 TAC* generateAttrExpression(TAC* code0, TAC* code1, TAC* code2, AST* optionalSon);
-TAC* generateFunBody(TAC* funName, TAC* funBody);
+TAC* generateFunBody(TAC* funName, TAC* funBody, TAC* funParams);
 TAC* generateVector(TAC* head, TAC* tail, AST* optionalSon);
 TAC* generateVectorInit(TAC* head, TAC* tail, AST* optionalSon);
 TAC* generatePrintChain(TAC* head, TAC* tail);
@@ -13,6 +13,7 @@ TAC* generateIf(TAC* expression, TAC* command, TAC* elseCommand, AST* optionalEl
 TAC* doGenerateIf(TAC* expression, TAC* command);
 TAC* generateIfElse(TAC* expression, TAC* command, TAC* elseCommand);
 TAC* generateUntil(TAC* expression, TAC* command);
+TAC* generateFunArgChain(TAC* head, TAC* tail);
 
 TAC* tacCreate(int type, HASH_NODE* res, HASH_NODE* op1, HASH_NODE* op2) {
     TAC* newtac;
@@ -61,6 +62,8 @@ void tacPrint(TAC* tac) {
         case TAC_IFZ: fprintf(stderr, "TAC_IFZ"); break;
         case TAC_JUMP: fprintf(stderr, "TAC_JUMP"); break;
         case TAC_LABEL: fprintf(stderr, "TAC_LABEL"); break;
+        case TAC_ARG: fprintf(stderr, "TAC_ARG"); break;
+        case TAC_CALL: fprintf(stderr, "TAC_CALL"); break;
         default: fprintf(stderr, "TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN TAC_UNKNOWN"); break;
     }
 
@@ -129,7 +132,7 @@ TAC* generateCode(AST *node) {
         case AST_AND:
             return generateBinOp(TAC_AND, code[0], code[1]);
         case AST_TILDA:
-            return tacJoin(code[1], tacCreate(TAC_TILDA, makeTemp(), safeGetResult(code[0]), 0));
+            return tacJoin(tacJoin(code[1], code[0]), tacCreate(TAC_TILDA, makeTemp(), safeGetResult(code[0]), 0));
         case AST_RETURN:
             return tacJoin(code[0], tacCreate(TAC_RETURN, safeGetResult(code[0]),0 ,0));
         case AST_READ:
@@ -139,6 +142,8 @@ TAC* generateCode(AST *node) {
         case AST_CHAR:
         case AST_BRACKET_EXPR:
         case AST_ELSE:
+        case AST_CMD_CURLY:
+        case AST_EXPR_PARENT:
             return passThrough(code[0]);
         case AST_ATTR:
             return generateAttrExpression(code[0], code[1], code[2], node->son[2]);
@@ -153,7 +158,7 @@ TAC* generateCode(AST *node) {
         case AST_FUN_INT:
         case AST_FUN_CHAR:
         case AST_FUN_FLOAT:
-            return generateFunBody(code[0], code[2]);
+            return generateFunBody(code[0], code[2], code[1]);
         case AST_LEAF_BRACKET_OPTIONAL:
             return node->son[1] ?
                             tacJoin(code[0], generateBracketExpression(code[1])) :
@@ -172,6 +177,11 @@ TAC* generateCode(AST *node) {
             return tacCreate(TAC_LABEL, safeGetResult(code[0]), 0,0);
         case AST_LABEL:
             return tacCreate(TAC_JUMP, safeGetResult(code[0]), 0, 0);
+        case AST_FUN_ARG:
+        case AST_FUN_DEC_PARAM:
+            return generateFunArgChain(code[0], code[1]);
+        case AST_FUN:
+            return tacJoin(code[1], tacCreate(TAC_CALL, makeTemp(), safeGetResult(code[0]), safeGetResult(code[1])));
         default:
             return tacJoin(code[0], tacJoin(code[1], tacJoin(code[2], code[3])));
     }
@@ -186,7 +196,7 @@ TAC* passThrough(TAC* code) {
 }
 
 TAC* generateBracketExpression(TAC* code) {
-    HASH_NODE *label = makeLabel();
+    HASH_NODE *label = makeTemp();
     
     return tacJoin(tacCreate(TAC_OPEN_BRACKET, label, 0,0),
                    tacJoin(code, 
@@ -203,12 +213,11 @@ TAC* generateAttrExpression(TAC* code0, TAC* code1, TAC* code2, AST* optionalSon
     }
 }
 
-TAC* generateFunBody(TAC* funName, TAC* funBody) {
-    return tacJoin(
-            tacCreate(TAC_BEGINFUN, safeGetResult(funName), 0, 0),
-            tacJoin(
-                    funBody,
-                    tacCreate(TAC_ENDFUN, safeGetResult(funName), 0, 0)));
+TAC* generateFunBody(TAC* funName, TAC* funBody, TAC* funParams) {
+    return tacJoin(funParams,
+            tacJoin(tacCreate(TAC_BEGINFUN, safeGetResult(funName), safeGetResult(funParams), 0),
+                    tacJoin(funBody,
+                            tacCreate(TAC_ENDFUN, safeGetResult(funName), 0, 0))));
 }
 
 TAC* generateVector(TAC* head, TAC* tail, AST* optionalSon) {
@@ -232,6 +241,10 @@ TAC* generateVectorInit(TAC* head, TAC* tail, AST* optionalSon) {
 
 TAC* generatePrintChain(TAC* head, TAC* tail) {
     return tacJoin(tail, tacCreate(TAC_PRINT, safeGetResult(head), safeGetResult(tail), 0));
+}
+
+TAC* generateFunArgChain(TAC* head, TAC* tail) {
+    return tacJoin(tacJoin(tail, head), tacCreate(TAC_ARG, safeGetResult(head), safeGetResult(tail), 0));
 }
 
 TAC* generateIf(TAC* expression, TAC* command, TAC* elseCommand, AST* optionalElse) {

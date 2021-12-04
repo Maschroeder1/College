@@ -34,6 +34,8 @@
 #define TAC_IFZ 24
 #define TAC_JUMP 25
 #define TAC_LABEL 26
+#define TAC_ARG 27
+#define TAC_CALL 28
 
 typedef struct tac_node {
     int type;

@@ -4,21 +4,25 @@ int: otherdatavar=222;
 int[123..321]: vet1;
 int[456..654]: vet2 = 'a' 'b' 'c';
 }
-int: fun() {
-funvar[a] = 333;
-funvar2 = 444 / 555;
-funvar3 = 666 + b[321 + 798] - c[read] * fun(x) - 777;
-if (~1) q = 1;
-if(k) a = 1 else {a = 2;};
-print "string1", "148694689", 456, 999, (1+1);
-print "string2";
-print;
+int: fun(int: i, int: j, int: k) {
+##funvar[a] = 333;
+##funvar2 = 444 / 555;
+##funvar3 = 666 + b[321 + 798] - c[read] * fun(x) - 777;
+##if (~1) q = 1;
+##if(k) a = 1 else {a = 2;};
+##print "string1", "148694689", 456, 999, (1+1);
+##print "string2";
+##print;
 }
 int: fun2() {
-fun2var = 1;
-return (1 + 11 + 123 + 'a');
-until(1+1) return 'a';
-q=1;
-comefrom: marca 1;
-marca 1;
+##fun2var = 1;
+##return (1 + 11 + 123 + 'a');
+##until(1+1) return 'a';
+##q=1;
+##comefrom: marca 1;
+##marca 1;
+q = fun1() + 1;
+w = fun2(123);
+x = fun2(12 + 3, 'a', 789, 7);
 }
+int: fun3(float: a) {}

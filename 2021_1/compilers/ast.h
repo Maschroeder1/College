@@ -29,30 +29,30 @@
 #define AST_IF 20
 #define AST_ELSE 21
 #define AST_BRACKET_EXPR 22
-#define AST_LEAF_BRACKET_OPTIONAL 23
+#define AST_LEAF_BRACKET_OPTIONAL 23 // array confunde
 #define AST_UNTIL 24
 #define AST_COME_FROM 25
 #define AST_READ 26
-#define AST_FUN 27 // todo
-#define AST_FUN_ARG 28 // todo
-#define AST_FUN_DEC_PARAM 30 // todo
+#define AST_FUN 27
+#define AST_FUN_ARG 28
+#define AST_FUN_DEC_PARAM 30
 #define AST_INT 31
 #define AST_CHAR 32
 #define AST_FLOAT 33
-#define AST_FUN_BLOCK 34 // todo
+#define AST_FUN_BLOCK 34 // parece inutil
 #define AST_FUN_INT 35
 #define AST_FUN_CHAR 36
 #define AST_VAR 38
 #define AST_VET_RANGE 40 // todo?
 #define AST_VET_INIT 41
-#define AST_DATA_SECT 42 // todo
-#define AST_INIT 43 // todo?
+#define AST_DATA_SECT 42 // parece inutil
+#define AST_INIT 43 // parece inutil
 #define AST_FUN_FLOAT 44
 #define AST_VET_CHAR 45
 #define AST_VET_INT 46
 #define AST_VET_FLOAT 47
-#define AST_EXPR_PARENT 48 // todo
-#define AST_CMD_CURLY 49 // todo
+#define AST_EXPR_PARENT 48
+#define AST_CMD_CURLY 49
 #define AST_LABEL 50
 
 typedef struct astnode {
